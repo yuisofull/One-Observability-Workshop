@@ -19,14 +19,13 @@ home = [ "HTML", "RSS", "JSON"]
   
 [Languages]
 [Languages.vi]
-title = "One Observability Workshop
-"
-weight = 2
+title = "One Observability Workshop"
+weight = 1
 languageName = "Tiếng Việt"
 
 [Languages.en]
 title = "Upload file to AWS S3 through AWS Lambda(Golang)"
-weight = 1
+weight = 2
 languageName = "English"
 
 [[Languages.en.menu.shortcuts]]
