@@ -23,11 +23,6 @@ title = "One Observability Workshop"
 weight = 1
 languageName = "Tiếng Việt"
 
-[Languages.en]
-title = "Upload file to AWS S3 through AWS Lambda(Golang)"
-weight = 2
-languageName = "English"
-
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-facebook'></i> AWS Study Group"
 identifier = "AWS Study Group FB"

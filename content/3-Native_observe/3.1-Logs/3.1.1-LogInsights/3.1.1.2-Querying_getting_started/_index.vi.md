@@ -8,9 +8,9 @@ pre : " <b> 3.1.1.1 </b> "
 
 Trước khi chúng ta tiếp xúc với ngôn ngữ truy vấn, ta sẽ cần biết về giao diện Logs Insights console và các tính năng chúng ta có thể sử dụng, như khám phá trường (fields) tự động, truy vấn mẫu, truy vấn đã lưu và lịch sử truy vấn. 
 
-### Khám phá trường (fields) tự động
+### Khám phá trường tự động
 
-CloudWatch có thể tự động khám phá các trường từ log của bạn.
+CloudWatch có thể tự động khám phá các trường từ dữ log của bạn.
 
 1. Trong Bảng điều khiển quản lý AWS, trên menu Services, nhấp vào CloudWatch.
 
@@ -32,7 +32,8 @@ Bạn sẽ thấy một danh sách các trường được tìm thấy bởi Clo
 
 {{% notice note %}}
 **Trường (fields) bắt đầu với "@"** 
-Trường (fields) bắt đầu với "@" là các trường được [CloudWatch tự động tạo ra](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html).</br>
+Trường (fields) bắt đầu với "@" là các trường được [CloudWatch tự động tạo ra](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html).
+
 Trường *@message* chứa log raw(chưa được xử lí hay parse)
 {{% /notice %}}
 
@@ -42,7 +43,7 @@ Việc này cho phép bạn chọn lấy những trường bạn muốn sử d�
 Những trường được tự động tìm thấy bởi vì chúng ở dạng JSON.
 
 {{% notice note %}}
-**Định dạng JSON** </br>
+**Định dạng JSON** 
 Định dạng JSON là sự lựa chọn tuyệt vời cho dữ liệu log, CloudWatch hỗ trợ khả năng tự động tìm thấy các trường trong JSON. Do đó bạn có thể dễ dàng sử dụng chúng trong các truy vấn của bạn.
 Tham khảo thêm ở [Fields in JSON logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html).
 {{% /notice %}}
@@ -91,4 +92,4 @@ Bạn nên thấy một truy vấn tên là *Sample1* ở phần **Saved queries
 
 Ở đây bạn có thể thấy lịch sự tất cả truy vấn đã thực hiện. Bạn sẽ thấy truy vấn được thực thi bởi người đăng nhập vô cho dù họ có lưu lại hay không.
 
-![007](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/007.gif)
+![007](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/007.png)
