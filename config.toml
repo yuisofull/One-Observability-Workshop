@@ -16,12 +16,19 @@ home = [ "HTML", "RSS", "JSON"]
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
-  
+
+defaultContentLanguage = 'vi'
+defaultContentLanguageInSubdir = true
 [Languages]
 [Languages.vi]
 title = "One Observability Workshop"
 weight = 1
 languageName = "Tiếng Việt"
+
+[Languages.en]
+title = "Upload file to AWS S3 through AWS Lambda(Golang)"
+weight = 2
+languageName = "English"
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-facebook'></i> AWS Study Group"
