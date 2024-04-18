@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dọn dẹp tài nguyên   on Đăng file lên AWS S3 với AWS Lambda(Golang)</title>
+    <link>//localhost:1313/vi/5-cleanup/</link>
+    <description>Recent content in Dọn dẹp tài nguyên   on Đăng file lên AWS S3 với AWS Lambda(Golang)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="//localhost:1313/vi/5-cleanup/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

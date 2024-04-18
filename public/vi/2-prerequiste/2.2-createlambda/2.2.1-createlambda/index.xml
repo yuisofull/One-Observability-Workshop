@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tạo Lambda Function on Đăng file lên AWS S3 với AWS Lambda(Golang)</title>
+    <link>//localhost:1313/vi/2-prerequiste/2.2-createlambda/2.2.1-createlambda/</link>
+    <description>Recent content in Tạo Lambda Function on Đăng file lên AWS S3 với AWS Lambda(Golang)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <atom:link href="//localhost:1313/vi/2-prerequiste/2.2-createlambda/2.2.1-createlambda/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

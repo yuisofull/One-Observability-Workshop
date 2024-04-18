@@ -1,0 +1,85 @@
+[
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "One Observability Workshop",
+	"tags": [],
+	"description": "",
+	"content": "One Observability Workshop Tổng quan Chào mừng bạn đến với One Observability Workshop. Workshop này cung cấp cho bạn trải nghiệm thực tế với một loạt các công cụ mà AWS cung cấp cho việc giám sát và quan sát.\nCho dù môi trường của bạn đặt tại trên on-prem hoặc trên AWS, hoặc ứng dụng của bạn là kiến trúc monolith hoặc microservice, các công cụ quan sát sẽ giúp bạn hiểu sâu hơn về hiệu suất ứng dụng của bạn.\nCác giải pháp tiết kiệm chi phí và cơ bản của AWS cung cấp các khả năng mạnh mẽ giúp bạn xác định các chướng ngại vật, vấn đề và khuyết điểm mà không cần phải lục tung qua các dữ liệu, số liệu và dữ liệu truy vết khác nhau một cách thủ công.\nBạn mong chờ nhận được gì trong workshop này Bạn sẽ học được gì? Bạn sẽ được học về các công cụ giám sát của AWS như Amazon CloudWatch, AWS X-Ray, Amazon Managed Service, Amazon Managed Grafana , và AWS Distro for OpenTelemetry (ADOT). Trong workshop này chúng ta sẽ deploy 1 ứng dụng microservice và hướng dẫn các bạn khám phá những thứ các bạn làm được với vô số công cụ giám sát. Cuối cùng, bạn sẽ có hiểU biết rõ ràng về logging, metrics, và traces như là các kĩ thuật sử dụng chúng trong nhiều trường hợp khác nhau.\nMất bao lâu để hoàn thành workshop? Bạn sẽ cần 3-4 tiếng để hoàn thành tất cả nếu bạn đi qua từng phần. Mọi phần đều được thiết kế riêng biệt với các phần khác nên bạn có thể chọn và học bất cứ phần nào bạn muốn.\nBạn cần trình độ ở mức nào? Đây là workshop ở mức trung cấp và mong người học sẽ có trải nghiệm với những công cụ AWS khác nhau. Trong khi bạn không cần phải là dân chuyên để làm workshop này, nó sẽ giúp bạn có những kiến thúc cơ bản về monitoring như logs, metrics, traces, alarms, dashboards\u0026hellip;\nBạn sẽ mất gì? Bạn sẽ mất chút chi phí để thực hiện workshop này. Hãy đảm bảo rằng dọn dẹp mọi tài nguyên sau làm xong cái bạn muốn làm để tránh mất chi phí không đáng. Bài workshop này được viết lại dựa trên One Observability Workshop với mong muốn người làm có thể hiểu rõ hơn và dễ tiếp cận hơn hơn.\nGiới thiệu Cloud 9 \u0026amp;\u0026amp; deploy ứng dụng AWS native Observability Use Cases Dọn dẹp tài nguyên "
+},
+{
+	"uri": "//localhost:1313/vi/2-setup/2.1-cloud9/",
+	"title": "Cài đặt môi trường Cloud9",
+	"tags": [],
+	"description": "",
+	"content": "Chúng ta sẽ sử dụng CloudShell để tạo Cloud9 instance cho việc triển khai ứng dụng PetAdpotions.\nĐiềU kiện tiên quyết Trong hướng dẫn này chúng ta sẽ sử dụng CloudShell, nếU bạn không muốn sử dụng CloudShell, bạn phải cài đặt và có sẵn AWS CLI trên máy của bạn và thực hiện các câu lệnh trong các bước sắp tới.\nProfile của bạn phải có quyền admin.\nSetup Trong AWS Management Console ở trên Services, chọn CloudShell. Sao chép và dán đoạn lệnh sau vào terminal: curl -O https://raw.githubusercontent.com/aws-samples/one-observability-demo/main/cloud9-cfn.yaml aws cloudformation create-stack --stack-name C9-Observability-Workshop --template-body file://cloud9-cfn.yaml --capabilities CAPABILITY_NAMED_IAM aws cloudformation wait stack-create-complete --stack-name C9-Observability-Workshop echo -e \u0026#34;Cloud9 Instance is Ready!!\\n\\n\u0026#34; Sau khoảng thời gian ngắn, terminal sẽ xuất hiện \u0026ldquo;Cloud9 Instance is Ready!!. Điều này có nghĩ là môi trường Cloud9 của bạn đã sẵn sàng "
+},
+{
+	"uri": "//localhost:1313/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Giới thiệU AWS cung cấp monitoring, logging, alarming, dashboards thông qua Amazon CloudWatch và tracing thông qua AWS X-Ray. Khi triển khai cùng nhau, chúng cung cấp ba trụ cột (Metric, Logs \u0026amp; Traces) của một giải pháp quan sát.\nTrong sự kiện re:Invent 2020, AWS ra mắt Amazon Managed Service for Prometheus và Amazon Managed Grafana, hai dịch vụ quản lý mới dựa trên mã nguồn mở, cung cấp thêm các lựa chọn cho khách hàng.\nAWS cũng ra mắt AWS Distro for OpenTelemetry (ADOT) - một bản phân phối an toàn, sẵn sàng cho sản xuất, được hỗ trợ bởi dự án OpenTelemetry. Là một phần của Cloud Native Computing Foundation, OpenTelemetry cung cấp các API, thư viện và agent mã nguồn mở để thu thập dữ liệu truy vết và số liệu phân tán cho giám sát ứng dụng. Với AWS Distro for OpenTelemetry, bạn có thể cài đặt ứng dụng của mình chỉ một lần để gửi số liệu và dữ liệu truy vết tương quan đến nhiều giải pháp giám sát của AWS và Partner.\nCác sự lựa chọn trong AWS Observability Full stack Observability on AWS "
+},
+{
+	"uri": "//localhost:1313/vi/3-native_observe/3.1-logs/",
+	"title": "Logs",
+	"tags": [],
+	"description": "",
+	"content": "CloudWatch Logs cho phép bạn tập hợp tất cả logs từ hệ thống, ứng dụng và dịch vụ AWS mà bạn sử dụng ở trong duy nhất 1 dịch vụ có thể mở rộng, cân tải tốt. Bạn có thể dễ dàng quan sát, tìm kiếm một số lỗi nhất định hoặc partern, lọc chúng theo một số vùng nhất định và lưu trữ chúng một cách an toàn để phân tích chúng trong tương lai. CloudWatch Logs cho phép bạn nhìn thấy tất cả logs ở bất kì nguồn nào như một flow duy nhất và nhất quán sắp xếp theo thời gian, và bạn có thể truy vấn và sắp xếp chúng dựa trên kích thước, nhóm hay tự tạo một phép tính toán với những lệnh truy vấn mạnh mẽ và hiển thị dữ liệu log ở trong dashboard. Đọc thêm về CloudWatch Logs\r"
+},
+{
+	"uri": "//localhost:1313/vi/2-setup/2.2-deploy/",
+	"title": "Triển khai",
+	"tags": [],
+	"description": "",
+	"content": "\rBài workshop này cực kì khuyến khích bạn sử dụng Cloud9 để cài đặt cũng như tương tác. Trong khi bạn đang sử dụng terminal của chính bạn, những bước ở đây đã được tối ưu hoá và hoạt động với Cloud9. Nếu bạn không sử dụng Cloud9, workshop này sẽ coi như bạn có phương pháp thay thế phù hợp.\nChỉnh sửa quyền IAM cho Cloud9 Ở AWS Management Console trên phần Services, kiếm và chọn Cloud9.\nClick Open trên observabilityworkshop. Chọn vào icon hình bánh răng trên góc phải để mở tab Preferences.\nChọn AWS SETTINGS ở thanh menu bên trái. Tắt cài đặt AWS managed temporary credentials Đóng tab Preferences. Điều hướng tới terminal ở dưới. (Nếu bạn không thấy terminal, chọn Window ở phía bên trên, chọn New Terminal) Xoá credentials tạm thời Chạy câu lệnh sau trong terminal: rm -vf ${HOME}/.aws/credentials Câu lệnh trên đơn giản để đảm bảo rằng không còn credentials tạm thời nào bằng cách xoá files chứa credentials đi\nCài đặt AWS CLI với AWS Region hiện tại là mặc định: Chạy câu lệnh sau trong terminal: export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account) export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r \u0026#39;.region\u0026#39;) echo \u0026#34;export ACCOUNT_ID=${ACCOUNT_ID}\u0026#34; | tee -a ~/.bash_profile echo \u0026#34;export AWS_REGION=${AWS_REGION}\u0026#34; | tee -a ~/.bash_profile aws configure set default.region ${AWS_REGION} aws configure get default.region Đoạn lệnh trên cài đặt AWS CLI sử dụng AWS Region hiện tại là mặc định\nKiểm tra cài đặt môi trường Cloud9 Chạy câu lệnh sau trong terminal: test -n \u0026#34;$AWS_REGION\u0026#34; \u0026amp;\u0026amp; echo AWS_REGION is \u0026#34;$AWS_REGION\u0026#34; || echo AWS_REGION is not set aws sts get-caller-identity --query Arn | grep observabilityworkshop-admin -q \u0026amp;\u0026amp; echo \u0026#34;You\u0026#39;re good. IAM role IS valid.\u0026#34; || echo \u0026#34;IAM role NOT valid. DO NOT PROCEED.\u0026#34; Đoạn lệnh trên kiểm tra xem cài đặt môi trường của bạn có chính xác không.\nKhi sử dụng Cloud9, hãy chắc chắn rằng IAM role hợp lệ. Nếu không hãy qua lại và xác minh lại các bước trong trang này.\nCài đặt CDK Nếu repo chưa được clone, clone repo sử dụng câu lệnh: git clone https://github.com/aws-samples/one-observability-demo Sau khi clone thành công, chạy câu lệnh sau trong terminal:\ncd one-observability-demo/PetAdoptions/cdk/pet_stack npm install Đoạn lệnh trên di chuyển tới folder pet_stack và cài đặt các npm packages.\nBootstrap CDK Chạy câu lệnh sau để cài đặt Bootstrap CDK (hãy chắc chắn rằng bạn đang ở folder pet_stack): cdk bootstrap Trao quyền truy cập tới EKS Console (optional) Chạy câu lệnh sau (optional): Lưu ý: hãy thay \u0026lt;Enter your Role ARN\u0026gt; với ARN của AWS Identity của bạn. EKS Console mới gần đây ra mắt trong AWS. Để toàn quyền truy cập tới Console mới, một số quyền cần được trao ở trong EKS Cluster RBAC như miêu tả ở đây. Câu lệnh dưới đây trao quyền truy cập tới EKS Console.\nWorkshop này khuyến khích bạn để vào Role ARN bạn dùng để truy cập AWS Console cũng như có truy cập tới Amazon EKS service. CONSOLE_ROLE_ARN=\u0026lt;Enter your Role ARN\u0026gt; Triển khai ứng dụng Chạy các câu lệnh sau trên terminal để triển khai ứng dụng PetAdoptions trên tài khoản của bạn (hãy chắc chắn rằng bạn đang ở folder pet_stack): EKS_ADMIN_ARN=$(../../getrole.sh) echo -e \u0026#34;\\nRole \\\u0026#34;${EKS_ADMIN_ARN}\\\u0026#34; will be part of system\\:masters group\\n\u0026#34; if [ -z $CONSOLE_ROLE_ARN ]; then echo -e \u0026#34;\\nEKS Console access will be restricted\\n\u0026#34;; else echo -e \u0026#34;\\nRole \\\u0026#34;${CONSOLE_ROLE_ARN}\\\u0026#34; will have access to EKS Console\\n\u0026#34;; fi cdk deploy --context admin_role=$EKS_ADMIN_ARN Services --context dashboard_role_arn=$CONSOLE_ROLE_ARN --require-approval never cdk deploy Applications --require-approval never Nó sẽ mất vài phút để ứng dụng được triển khai hoàn toàn.\nCập nhật kubeconfig Chạy câu lệnh sau trong temrinal để cập nhật kubeconfig giúp bạn tương tác với EKS cluster: aws eks update-kubeconfig --name PetSite --region $AWS_REGION kubectl get nodes Sau khi chạy, nó nên hiện ra như thế này Tổng kết Đây là tất cả lệnh bạn chạy trong phần này, để nhanh gọn, bạn có thể sao chép hết lệnh dưới đây và chạy trong terminal:\nrm -vf ${HOME}/.aws/credentials export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account) export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r \u0026#39;.region\u0026#39;) echo \u0026#34;export ACCOUNT_ID=${ACCOUNT_ID}\u0026#34; | tee -a ~/.bash_profile echo \u0026#34;export AWS_REGION=${AWS_REGION}\u0026#34; | tee -a ~/.bash_profile aws configure set default.region ${AWS_REGION} aws configure get default.region test -n \u0026#34;$AWS_REGION\u0026#34; \u0026amp;\u0026amp; echo AWS_REGION is \u0026#34;$AWS_REGION\u0026#34; || echo AWS_REGION is not set aws sts get-caller-identity --query Arn | grep observabilityworkshop-admin -q \u0026amp;\u0026amp; echo \u0026#34;You\u0026#39;re good. IAM role IS valid.\u0026#34; || echo \u0026#34;IAM role NOT valid. DO NOT PROCEED.\u0026#34; git clone https://github.com/aws-samples/one-observability-demo cd one-observability-demo/PetAdoptions/cdk/pet_stack npm install # CONSOLE_ROLE_ARN=\u0026lt;Enter your Role ARN\u0026gt; EKS_ADMIN_ARN=$(../../getrole.sh) echo -e \u0026#34;\\nRole \\\u0026#34;${EKS_ADMIN_ARN}\\\u0026#34; will be part of system\\:masters group\\n\u0026#34; if [ -z $CONSOLE_ROLE_ARN ]; then echo -e \u0026#34;\\nEKS Console access will be restricted\\n\u0026#34;; else echo -e \u0026#34;\\nRole \\\u0026#34;${CONSOLE_ROLE_ARN}\\\u0026#34; will have access to EKS Console\\n\u0026#34;; fi cdk deploy --context admin_role=$EKS_ADMIN_ARN Services --context dashboard_role_arn=$CONSOLE_ROLE_ARN --require-approval never cdk deploy Applications --require-approval never aws eks update-kubeconfig --name PetSite --region $AWS_REGION kubectl get nodes "
+},
+{
+	"uri": "//localhost:1313/vi/2-setup/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "Phần này sẽ hướng dẫn bạn qua các bước để sử dụng Cloud9 triển khai ứng dụng.\nNội dung Cài đặt môi trường Cloud9 Triển khai ứng dụng "
+},
+{
+	"uri": "//localhost:1313/vi/3-native_observe/",
+	"title": "AWS native Observability",
+	"tags": [],
+	"description": "",
+	"content": "Quan sát toàn bộ stack tại AWS bao gồm các giải pháp cơ bản của AWS, giám sát hiệu suất ứng dụng (APM) và các giải pháp mã nguồn mở, mang lại cho bạn khả năng hiểu được những gì đang diễn ra trên toàn bộ công nghệ của bạn vào bất kỳ thời điểm nào. Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và phân tích dữ liệu telemetry trong mạng lưới, cơ sở hạ tầng và ứng dụng của bạn trên môi trường đám mây, hybrid hoặc on-premises để bạn có thể thu thập thông tin về hành vi, hiệu suất và sức khỏe của hệ thống của bạn. Những thông tin này giúp bạn phát hiện, điều tra và khắc phục vấn đề một cách nhanh chóng; và kết hợp với trí tuệ nhân tạo và học máy, phản ứng, dự đoán và ngăn chặn vấn đề một cách tích cực.\nPhần này của workshop bao gồm các tính năng quan sát cơ bản của AWS dưới Amazon CloudWatch và AWS X-Ray.\nBạn sẽ có cơ hội tìm hiểu về các tính năng Quan sát của AWS như Amazon CloudWatch Dashboards , CloudWatch Container Insights , CloudWatch ServiceLens , CloudWatch Metrics , CloudWatch Alarms , CloudWatch Logs , AWS X-Ray và hơn thế nữa.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-setup/2.3-apparchitecture/",
+	"title": "Kiến trúc ứng dụng",
+	"tags": [],
+	"description": "",
+	"content": "Biểu đồ sau minh họa các thành phần khác nhau của ứng dụng PetAdoptions. Đến thời điểm này, bạn nên đã triển khai ứng dụng PetAdoption trên tài khoản AWS bạn. Hãy nhớ xóa tất cả các tài nguyên bằng cách tuân theo hướng dẫn về dọn dẹp để tránh các chi phí sử dụng không cần thiết.\nNội dung của workshop này chủ yếu sử dụng kiến trúc sau đây: Khám phá ứng dụng (optional) Option 1: sử dụng Cloud9 (hoặc AWS CLI) Bạn cần hoàn thành các bước cài đặt Cloud9 trước đó, nếu không, hãy hướng tới Option 2.\nChạy câu lệnh sau:\naws ssm get-parameter --name \u0026#39;/petstore/petsiteurl\u0026#39; | jq -r .Parameter.Value Option 2: sử dụng CloudFormation console Ở phía trong CloudFormation console bạn cần làm:\nChọn Stacks ở thanh điều hướng bên trái. Kiếm stack tên là Services và click nó. Chọn tab Outputs, bạn sẽ thấy URL website xuất hiện ngay ở PetSiteUrl: Bước tiếp theo Mở link ở một trang web mới, bạn sẽ thấy ứng dụng như bức ảnh dưới đây: Troubleshooting Trong trường hợp hiếm có, có khả năng bạn sẽ gặp phải vấn đề website không hiện bất kì hình ảnh nào, chọn Perform Housekeeping ở ngay trên góc phải của website.\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-references/",
+	"title": "References",
+	"tags": [],
+	"description": "",
+	"content": "1. Amazon S3 https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteAccessPermissionsReqd.html https://repost.aws/knowledge-center/api-gateway-upload-image-s3 2. Lambda https://viblo.asia/p/serverless-series-golang-bai-1-serverless-va-aws-lambda-gAm5y71XZdb https://000078.awsstudygroup.com/1-introduce/ 3. Code https://www.appsloveworld.com/go/49/lambda-multipart-file-upload-in-go https://github.com/myshenin/aws-lambda-multipart-parser https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/gov2/s3/actions/bucket_basics.go https://github.com/aws/aws-lambda-go/blob/main/events/README_ApiGatewayEvent.md https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html https://github.com/grokify/go-awslambda https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html "
+},
+{
+	"uri": "//localhost:1313/vi/5-cleanup/",
+	"title": "Dọn dẹp tài nguyên  ",
+	"tags": [],
+	"description": "",
+	"content": "Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.\nXóa S3 bucket Truy cập giao diện quản trị dịch vụ S3 Click chọn S3 bucket chúng ta đã tạo cho bài thực hành. ( Ví dụ : bucket-for-lambda-55555 ) Click Empty. Điền permanently delete, sau đó click Empty để tiến hành xóa object trong bucket. Click Exit. Sau khi xóa hết object trong bucket, click Delete Điền tên S3 bucket, sau đó click Delete bucket để tiến hành xóa S3 bucket. Xóa API Gateway Truy cập vào giao diện quản trị dịch vụ API Gateway Chọn S3 Upload Chọn Delete Tại ô confirm , điền confirm. Click Delete để tiến hành xóa API Gateway. Xóa Lambda Function Truy cập vào giao diện quản trị dịch vụ Lambda Click s3-upload. Click chọn Actions. Click Delete. Tại ô confirm, điền delete để xác nhận, click Delete để thực hiện xóa Lambda function và các tài nguyên liên quan. "
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

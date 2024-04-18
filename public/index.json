@@ -1,0 +1,71 @@
+[
+{
+	"uri": "//localhost:1313/",
+	"title": "Upload file to S3 with Lambda(Golang)",
+	"tags": [],
+	"description": "",
+	"content": "Uploading a File to AWS S3 with AWS Lambda (Golang) Overview In this lab, you will use AWS Lambda to upload a file to S3 via a POST request from API Gateway using Golang.\nContents Introduction Prerequisites Upload file References Cleaning up resources "
+},
+{
+	"uri": "//localhost:1313/1-introduce/",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": "Serverless Serverless is a cloud development model that allows you to build and run your applications easily without managing any servers.\nHere are four benefits I see in the Serverless model:\nReducing the cost of managing and operating servers, which is often the responsibility of DevOps, and this workload can be reduced. For example, tasks like creating, managing, and monitoring EC2 instances. Automatic scaling and high availability: Our Functions as a Service (FaaS) will automatically scale with traffic, requiring minimal configuration unless we want it to scale in a specific way. Optimizing cloud resource usage: The most important issue with the cloud is the monthly cost, and when we use FaaS, we only need to pay for each triggered function. Supporting multiple languages: We can use various programming languages to write FaaS. AWS Lambda Lambda is a serverless compute service that allows you to run applications without provisioning or managing servers. Lambda runs on a highly available platform and manages all compute resources, including server and operating system maintenance, capacity provisioning, automatic scaling, and logging. With Lambda, you can develop almost any type of application or backend service.\nYou organize your application into Lambda functions. Lambda functions only run when needed and have the ability to automatically scale, from a few requests per day to thousands per second. You only pay for the compute time you consume - AWS does not charge when your application is not running.\nIn this hands-on exercise, we will help users upload files to a bucket using a POST request through API Gateway and Lambda Function.\n"
+},
+{
+	"uri": "//localhost:1313/2-setup/",
+	"title": "Preparation ",
+	"tags": [],
+	"description": "",
+	"content": "You need to create 1 S3 Bucket, 1 Lambda Function, and 1 API Gateway to carry out this lab exercise. To enable the Lambda Function to interact with S3, we will also need to grant appropriate permissions to this Lambda Function.\nContents Create Bucket Create Lambda Function Create API Gateway "
+},
+{
+	"uri": "//localhost:1313/2-setup/2.1-cloud9/",
+	"title": "Preparation for bucket S3",
+	"tags": [],
+	"description": "",
+	"content": "In this step, we will need to create a public bucket resource accessible to external users.\nContents Create bucket Configure bucket "
+},
+{
+	"uri": "//localhost:1313/2-setup/2.2-deploy/",
+	"title": "Preparation for Lambda Function",
+	"tags": [],
+	"description": "",
+	"content": "You need to create 1 S3 Bucket, 1 Lambda Function, and 1 API Gateway to carry out this lab exercise. To enable the Lambda Function to interact with S3, we will also need to grant appropriate permissions to this Lambda Function.\nContents Create Bucket Create Lambda Function Create API Gateway "
+},
+{
+	"uri": "//localhost:1313/3-native_observe/",
+	"title": "Upload file",
+	"tags": [],
+	"description": "",
+	"content": "In this step, we will upload an image to S3 using curl or Postman Curl Open your terminal and enter:\ncurl -v --request POST \u0026#39;{Invoke URL from previous step}/upload\u0026#39; --form file=\u0026#39;@{Path to the image}\u0026#39; For example, in my case it would be:\ncurl -v --request POST \u0026#39;https://4x87mid1b8.execute-api.ap-southeast-1.amazonaws.com/staging/upload\u0026#39; --form file=\u0026#39;@C:\\Users\\Admin\\ok.png\u0026#39; If successful, it will return the link at the end like this:\n{\u0026#34;link\u0026#34;:\u0026#34;https://lambda-test-12333.s3.ap-southeast-1.amazonaws.com/ok-1708837492785249474.png\u0026#34;}* Connection #0 to host 4x87mid1b8.execute-api.ap-southeast-1.amazonaws.com left intact Postman In the body section, select form-data. Add key as file Select the file you want as the value After successful upload, you can see the uploaded file in your bucket.\n"
+},
+{
+	"uri": "//localhost:1313/4-references/",
+	"title": "References",
+	"tags": [],
+	"description": "",
+	"content": "1. Amazon S3 https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteAccessPermissionsReqd.html https://repost.aws/knowledge-center/api-gateway-upload-image-s3 2. Lambda https://viblo.asia/p/serverless-series-golang-bai-1-serverless-va-aws-lambda-gAm5y71XZdb https://000078.awsstudygroup.com/1-introduce/ 3. Code https://www.appsloveworld.com/go/49/lambda-multipart-file-upload-in-go https://github.com/myshenin/aws-lambda-multipart-parser https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/gov2/s3/actions/bucket_basics.go https://github.com/aws/aws-lambda-go/blob/main/events/README_ApiGatewayEvent.md https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html https://github.com/grokify/go-awslambda https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html "
+},
+{
+	"uri": "//localhost:1313/5-cleanup/",
+	"title": "Clean up resources",
+	"tags": [],
+	"description": "",
+	"content": "We will proceed with the following steps to delete the resources we created in this lab exercise. Delete S3 bucket Access the S3 management console\nSelect the S3 bucket we created for this lab. (For example: bucket-for-lambda-55555) Click Empty. Enter permanently delete, then click Empty to delete objects in the bucket. Click Exit. After deleting all objects in the bucket, click Delete.\nEnter the S3 bucket name, then click Delete bucket to delete the S3 bucket. Delete API Gateway Access the API Gateway service management interface Select S3 Upload. Click Delete. In the confirmation box, enter confirm. Click Delete to delete the API Gateway. Delete Lambda Function Access the Lambda service management interface Click s3-upload. Select Actions. Click Delete. In the confirmation box, enter delete to confirm, then click Delete to delete the Lambda function and related resources. "
+},
+{
+	"uri": "//localhost:1313/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
