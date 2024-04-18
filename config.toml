@@ -18,6 +18,12 @@ home = [ "HTML", "RSS", "JSON"]
   disableNextPrev = false
   
 [Languages]
+[Languages.vi]
+title = "One Observability Workshop
+"
+weight = 2
+languageName = "Tiếng Việt"
+
 [Languages.en]
 title = "Upload file to AWS S3 through AWS Lambda(Golang)"
 weight = 1
@@ -28,11 +34,6 @@ name = "<i class='fab fa-facebook'></i> AWS Study Group"
 identifier = "AWS Study Group FB"
 url = "https://www.facebook.com/groups/awsstudygroupfcj/"
 weight = 20
-
-[Languages.vi]
-title = "Đăng file lên AWS S3 với AWS Lambda(Golang)"
-weight = 2
-languageName = "Tiếng Việt"
 
 [[Languages.vi.menu.shortcuts]]
 name = "<i class='fab fa-facebook'></i> AWS Study Group"
