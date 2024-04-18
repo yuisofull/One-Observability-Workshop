@@ -1,6 +1,8 @@
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 canonifyURLs = true
+defaultContentLanguage = 'vi'
+defaultContentLanguageInSubdir = true
 
 # For search functionality
 [outputs]
@@ -17,8 +19,6 @@ home = [ "HTML", "RSS", "JSON"]
   disableBreadcrumb = false
   disableNextPrev = false
 
-defaultContentLanguage = 'vi'
-defaultContentLanguageInSubdir = true
 [Languages]
 [Languages.vi]
 title = "One Observability Workshop"

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
 
-    <title>Logs :: One Observability Workshop</title>
+    <title>Log Insights :: One Observability Workshop</title>
 
     
     <link href="//localhost:1313/css/nucleus.css?1713428626" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/">
+  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -262,8 +262,8 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/" title="Logs" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/">
@@ -294,7 +294,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" class="dd-item 
         
-        
+        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/">
@@ -544,7 +544,13 @@
             
           
           
-            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > Logs
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > Log Insights
+          
+        
           
         
           
@@ -573,7 +579,7 @@
           
             <h1>
               
-              Logs
+              Log Insights
             </h1>
           
 
@@ -581,15 +587,22 @@
 
 
 
-	<p>CloudWatch Logs cho phép bạn tập hợp tất cả logs từ hệ thống, ứng dụng và dịch vụ AWS mà bạn sử dụng ở trong duy nhất 1 dịch vụ có thể mở rộng, cân tải tốt.</p>
-<p>Bạn có thể dễ dàng quan sát, tìm kiếm một số lỗi nhất định hoặc partern, lọc chúng theo một số vùng nhất định và lưu trữ chúng một cách an toàn để phân tích chúng trong tương lai.</p>
-<p>CloudWatch Logs cho phép bạn nhìn thấy tất cả logs ở bất kì nguồn nào như một flow duy nhất và nhất quán sắp xếp theo thời gian, và bạn có thể truy vấn và sắp xếp chúng dựa trên kích thước, nhóm hay tự tạo một phép tính toán với những lệnh truy vấn mạnh mẽ và hiển thị dữ liệu log ở trong dashboard.</p>
+	<p>CloudWatch Logs Insights cho phép bạn tương tác tìm kiếm và phân tích dữ liệu log của mình trong Amazon CloudWatch Logs. Bạn có thể thực hiện các truy vấn để giúp bạn phản ứng nhanh chóng một cách hiệu quả hơn với các vấn đề trong lúc vận hành. Nếu một vấn đề xảy ra, bạn có thể sử dụng CloudWatch Logs Insights để xác định nguyên nhân tiềm ẩn cũng như các thay đổi đã thực hiện.</p>
+<p>CloudWatch Logs Insights có một ngôn ngữ truy vấn được tạo ra với một số lệnh đơn giản nhưng mạnh mẽ. CloudWatch Logs Insights cung cấp các truy vấn mẫu, mô tả lệnh, tự động hoàn thành truy vấn và khám phá log để giúp bạn bắt đầu. Các truy vấn mẫu đã được bao gồm cho một số loại logs dịch vụ AWS.</p>
+<p>CloudWatch Logs Insights tự động khám phá các vùng (fields) trong các log từ các dịch vụ AWS như Amazon Route 53, AWS Lambda, AWS CloudTrail và Amazon VPC, cũng như bất kỳ ứng dụng hoặc lod tùy chỉnh nào phát sinh sự kiện log dưới dạng JSON.</p>
+<p>Bạn có thể sử dụng CloudWatch Logs Insights để tìm kiếm log đã được gửi đến CloudWatch Logs vào ngày 5 tháng 11 năm 2018 hoặc sau đó.</p>
+<p>Bạn có thể lưu trữ các truy vấn bạn đã tạo. Điều này có thể giúp bạn chạy các truy vấn phức tạp khi cần thiết, mà không cần phải tạo lại chúng mỗi lần bạn muốn chạy chúng.</p>
 
-<a  href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html" target="_blank"  class="btn btn-default">
+<div class="notices note" ><p><strong>Chúng ta sẽ sử dụng dữ liệu nào?</strong></p>
+<p>Chúng ta sẽ sử dụng log được tạo ra bởi ứng dụng PetSite trong module này. Bạn có thể sử dụng log của riêng bạn, nhưng định dạng và logic truy vấn sẽ khác nhau.</p>
+</div>
+
+
+<a  href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html" target="_blank"  class="btn btn-default">
   
   
   
-  Đọc thêm về CloudWatch Logs
+  Đọc thêm về chủ đề này
   
 </a>
 
@@ -750,8 +763,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -767,6 +778,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -845,10 +859,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/" title="AWS native Observability"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/" title="Logs"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.1-interface/" title="Navigating the Interface" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
 
-    <title>Logs :: One Observability Workshop</title>
+    <title>Navigating the Interface :: One Observability Workshop</title>
 
     
     <link href="//localhost:1313/css/nucleus.css?1713428626" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/">
+  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -262,8 +262,8 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/" title="Logs" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/">
@@ -293,7 +293,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" class="dd-item 
-        
+        parent
         
         
         ">
@@ -353,7 +353,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/" title="Navigating the Interface" class="dd-item 
         
-        
+        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/">
@@ -544,7 +544,19 @@
             
           
           
-            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > Logs
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/'>Log Insights</a> > Navigating the Interface
+          
+        
+          
+        
           
         
           
@@ -557,7 +569,17 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#khám-phá-trường-tự-động">Khám phá trường tự động</a></li>
+        <li><a href="#các-mẫu-truy-vấn">Các mẫu truy vấn</a></li>
+        <li><a href="#lịch-sử-truy-vấn">Lịch sử truy vấn</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -573,7 +595,7 @@
           
             <h1>
               
-              Logs
+              Navigating the Interface
             </h1>
           
 
@@ -581,18 +603,90 @@
 
 
 
-	<p>CloudWatch Logs cho phép bạn tập hợp tất cả logs từ hệ thống, ứng dụng và dịch vụ AWS mà bạn sử dụng ở trong duy nhất 1 dịch vụ có thể mở rộng, cân tải tốt.</p>
-<p>Bạn có thể dễ dàng quan sát, tìm kiếm một số lỗi nhất định hoặc partern, lọc chúng theo một số vùng nhất định và lưu trữ chúng một cách an toàn để phân tích chúng trong tương lai.</p>
-<p>CloudWatch Logs cho phép bạn nhìn thấy tất cả logs ở bất kì nguồn nào như một flow duy nhất và nhất quán sắp xếp theo thời gian, và bạn có thể truy vấn và sắp xếp chúng dựa trên kích thước, nhóm hay tự tạo một phép tính toán với những lệnh truy vấn mạnh mẽ và hiển thị dữ liệu log ở trong dashboard.</p>
+	<p>Trước khi chúng ta tiếp xúc với ngôn ngữ truy vấn, ta sẽ cần biết về giao diện Logs Insights console và các tính năng chúng ta có thể sử dụng, như khám phá trường (fields) tự động, truy vấn mẫu, truy vấn đã lưu và lịch sử truy vấn.</p>
+<h3 id="khám-phá-trường-tự-động">Khám phá trường tự động</h3>
+<p>CloudWatch có thể tự động khám phá các trường từ dữ log của bạn.</p>
+<ol>
+<li>
+<p>Trong Bảng điều khiển quản lý AWS, trên menu Services, nhấp vào CloudWatch.</p>
+</li>
+<li>
+<p>Trong menu điều hướng bên trái dưới <strong>Logs</strong>, nhấp vào <strong>Logs Insights</strong>.</p>
+</li>
+<li>
+<p>Chọn <em>log group</em> có tên <strong>/ecs/PetListAdoptions</strong> từ <strong>Select log group(s)</strong>.</p>
+</li>
+</ol>
+<p>Bạn sẽ thấy một truy vấn mẫu được tự động đặt trong vùng truy vấn.</p>
+<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/001.png"></p>
+<ol start="4">
+<li>
+<p>Nhấp <strong>Run query</strong></p>
+</li>
+<li>
+<p>Ở menu phía bên phải, nhấp <strong>Discovered fields</strong></p>
+</li>
+</ol>
+<p>Bạn sẽ thấy một danh sách các trường được tìm thấy bởi CloudWatch một cách tự động:
+<img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/002.png"></p>
 
-<a  href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html" target="_blank"  class="btn btn-default">
-  
-  
-  
-  Đọc thêm về CloudWatch Logs
-  
-</a>
+<div class="notices note" ><p><strong>Trường (fields) bắt đầu với &ldquo;@&rdquo;</strong>
+Trường (fields) bắt đầu với &ldquo;@&rdquo; là các trường được <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html">CloudWatch tự động tạo ra</a>.</p>
+<p>Trường <em>@message</em> chứa log raw(chưa được xử lí hay parse)</p>
+</div>
 
+<p>Việc này cho phép bạn chọn lấy những trường bạn muốn sử dụng trong truy vấn với intellisense:
+<img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/003.png"></p>
+<p>Những trường được tự động tìm thấy bởi vì chúng ở dạng JSON.</p>
+
+<div class="notices note" ><p><strong>Định dạng JSON</strong>
+Định dạng JSON là sự lựa chọn tuyệt vời cho dữ liệu log, CloudWatch hỗ trợ khả năng tự động tìm thấy các trường trong JSON. Do đó bạn có thể dễ dàng sử dụng chúng trong các truy vấn của bạn.
+Tham khảo thêm ở <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html">Fields in JSON logs</a>.</p>
+</div>
+
+<h3 id="các-mẫu-truy-vấn">Các mẫu truy vấn</h3>
+<p>Log Insights cung cấp các mẫu truy vấn giúp bạn dễ dàng bắt đầu với chúng.</p>
+<ol start="6">
+<li>Ở menu phía bên phải, nhấp <strong>Queries</strong>.</li>
+</ol>
+<p>Bạn sẽ thấy một danh sách các mẫu truy vấn được sắp xếp theo thể loại như theo dịch vụ hay theo tần suất sử dụng.</p>
+<p>Chọn một trong số chúng và nhấp <strong>Apply</strong>, truy vấn sẽ được khởi tạo và bạn có thể chạy chúng.</p>
+<ul>
+<li><em><strong>Lưu ý</strong></em>: nó có thể không trả về kết quả cho các log group bạn đã chọn vì nó cho rằng trả về định dạng dữ liệu cơ bản.</li>
+</ul>
+<p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/004.png"></p>
+<ol start="7">
+<li>Sao chép và dán truy vấn sau vô editor.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, pettype
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter ispresent(pettype)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">count</span>() <span style="color:#66d9ef">by</span> pettype
+</span></span></code></pre></div><ol start="8">
+<li>
+<p>Nhấp <strong>Run query</strong> để thấy nó trả về kết quả.</p>
+</li>
+<li>
+<p>Nhấp <strong>Save</strong> ở dưới editor.</p>
+</li>
+<li>
+<p>Nhập <code>Sample1</code> cho <strong>Query name</strong>.</p>
+</li>
+<li>
+<p>Chọn <strong>Save</strong>.</p>
+</li>
+</ol>
+<p><img alt="005" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/005.png"></p>
+<ol start="12">
+<li>Ở thanh menu điều hướng bên phải, chọn <strong>Queries</strong>.</li>
+</ol>
+<p>Bạn nên thấy một truy vấn tên là <em>Sample1</em> ở phần <strong>Saved queries</strong>.</p>
+<p><img alt="006" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/006.png"></p>
+<h3 id="lịch-sử-truy-vấn">Lịch sử truy vấn</h3>
+<ol start="13">
+<li>Nhấp nút <strong>History</strong> ở dưới editor.</li>
+</ol>
+<p>Ở đây bạn có thể thấy lịch sự tất cả truy vấn đã thực hiện. Bạn sẽ thấy truy vấn được thực thi bởi người đăng nhập vô cho dù họ có lưu lại hay không.</p>
+<p><img alt="007" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/007.png"></p>
 
 
 
@@ -750,8 +844,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -768,21 +860,8 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -795,6 +874,23 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -808,6 +904,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -845,10 +944,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/" title="AWS native Observability"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.1-interface/" title="Navigating the Interface"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="//localhost:1313/vi/4-references/" title="References" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

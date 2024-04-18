@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kiến trúc ứng dụng on Đăng file lên AWS S3 với AWS Lambda(Golang)</title>
+    <title>Kiến trúc ứng dụng on One Observability Workshop</title>
     <link>//localhost:1313/vi/2-setup/2.3-apparchitecture/</link>
-    <description>Recent content in Kiến trúc ứng dụng on Đăng file lên AWS S3 với AWS Lambda(Golang)</description>
+    <description>Recent content in Kiến trúc ứng dụng on One Observability Workshop</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
     <atom:link href="//localhost:1313/vi/2-setup/2.3-apparchitecture/index.xml" rel="self" type="application/rss+xml" />
