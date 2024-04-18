@@ -23,11 +23,73 @@ Bạn sẽ thấy một truy vấn mẫu được tự động đặt trong vùn
 ![001](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/001.png)
 
 4. Nhấp **Run query**
-{{% notice note %}}
-**Chúng ta sẽ sử dụng dữ liệu nào?**
 
-Chúng ta sẽ sử dụng log được tạo ra bởi ứng dụng PetSite trong module này. Bạn có thể sử dụng log của riêng bạn, nhưng định dạng và logic truy vấn sẽ khác nhau.
+5. Ở menu phía bên phải, nhấp **Discovered fields**
+
+Bạn sẽ thấy một danh sách các trường được tìm thấy bởi CloudWatch một cách tự động:
+![002](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/002.png)
+
+
+{{% notice note %}}
+**Trường (fields) bắt đầu với "@"** 
+Trường (fields) bắt đầu với "@" là các trường được [CloudWatch tự động tạo ra](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html).
+
+Trường *@message* chứa log raw(chưa được xử lí hay parse)
 {{% /notice %}}
 
+Việc này cho phép bạn chọn lấy những trường bạn muốn sử dụng trong truy vấn với intellisense:
+![003](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/003.png)
 
-{{% button href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html" %}}Đọc thêm về chủ đề này {{% /button %}}
+Những trường được tự động tìm thấy bởi vì chúng ở dạng JSON.
+
+{{% notice note %}}
+**Định dạng JSON** 
+Định dạng JSON là sự lựa chọn tuyệt vời cho dữ liệu log, CloudWatch hỗ trợ khả năng tự động tìm thấy các trường trong JSON. Do đó bạn có thể dễ dàng sử dụng chúng trong các truy vấn của bạn.
+Tham khảo thêm ở [Fields in JSON logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html).
+{{% /notice %}}
+
+### Các mẫu truy vấn
+
+Log Insights cung cấp các mẫu truy vấn giúp bạn dễ dàng bắt đầu với chúng.
+
+6. Ở menu phía bên phải, nhấp **Queries**.
+
+Bạn sẽ thấy một danh sách các mẫu truy vấn được sắp xếp theo thể loại như theo dịch vụ hay theo tần suất sử dụng.
+
+Chọn một trong số chúng và nhấp **Apply**, truy vấn sẽ được khởi tạo và bạn có thể chạy chúng.
+
+- ***Lưu ý***: nó có thể không trả về kết quả cho các log group bạn đã chọn vì nó cho rằng trả về định dạng dữ liệu cơ bản.
+
+![004](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/004.png)
+
+7. Sao chép và dán truy vấn sau vô editor.
+
+```sql
+fields @timestamp, pettype
+| filter ispresent(pettype)
+| stats count() by pettype
+```
+
+8. Nhấp **Run query** để thấy nó trả về kết quả.
+
+9. Nhấp **Save** ở dưới editor.
+
+10. Nhập `Sample1` cho **Query name**.
+
+11. Chọn **Save**.
+
+![005](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/005.png)
+
+12. Ở thanh menu điều hướng bên phải, chọn **Queries**.
+
+Bạn nên thấy một truy vấn tên là *Sample1* ở phần **Saved queries**.
+
+![006](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/006.png)
+
+### Lịch sử truy vấn
+
+13. Nhấp nút **History** ở dưới editor.
+
+Ở đây bạn có thể thấy lịch sự tất cả truy vấn đã thực hiện. Bạn sẽ thấy truy vấn được thực thi bởi người đăng nhập vô cho dù họ có lưu lại hay không.
+
+![007](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.1-interface/007.png)

@@ -11,4 +11,5 @@ Phần này sẽ hướng dẫn bạn qua các bước để sử dụng Cloud9 
 ### Nội dung
   - [Cài đặt môi trường Cloud9](2.1-cloud9/)
   - [Triển khai ứng dụng](2.2-deployapplication/)
+  - [Kiến trúc ứng dụng](2.3-apparchitecture/)
   
