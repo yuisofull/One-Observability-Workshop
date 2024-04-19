@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Navigating the Interface on One Observability Workshop</title>
+    <title>Bắt đầu với truy vấn on One Observability Workshop</title>
     <link>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/</link>
-    <description>Recent content in Navigating the Interface on One Observability Workshop</description>
+    <description>Recent content in Bắt đầu với truy vấn on One Observability Workshop</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
     <atom:link href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/index.xml" rel="self" type="application/rss+xml" />

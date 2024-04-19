@@ -15,9 +15,9 @@
   </url><url>
     <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.1-interface/</loc>
   </url><url>
-    <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/</loc>
-  </url><url>
     <loc>//localhost:1313/vi/2-setup/2.2-deploy/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/</loc>
   </url><url>
     <loc>//localhost:1313/vi/2-setup/</loc>
   </url><url>
@@ -26,6 +26,8 @@
     <loc>//localhost:1313/vi/2-setup/2.3-apparchitecture/</loc>
   </url><url>
     <loc>//localhost:1313/vi/4-references/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/</loc>
   </url><url>
     <loc>//localhost:1313/vi/5-cleanup/</loc>
     <lastmod>1970-01-01T07:33:41+07:00</lastmod>

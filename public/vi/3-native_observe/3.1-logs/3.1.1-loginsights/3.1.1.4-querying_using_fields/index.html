@@ -9,7 +9,7 @@
 
     <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
 
-    <title>Bắt đầu với truy vấn :: One Observability Workshop</title>
+    <title>Truy vấn - sử dụng trường(fields) :: One Observability Workshop</title>
 
     
     <link href="//localhost:1313/css/nucleus.css?1713535890" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/">
+  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -353,7 +353,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/" title="Bắt đầu với truy vấn" class="dd-item 
         
-        active
+        
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.2-querying_getting_started/">
@@ -409,7 +409,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/" title="Truy vấn - sử dụng trường(fields)" class="dd-item 
         
-        
+        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/">
@@ -608,7 +608,7 @@
             
           
           
-            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/'>Log Insights</a> > Bắt đầu với truy vấn
+            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/'>Log Insights</a> > Truy vấn - sử dụng trường(fields)
           
         
           
@@ -629,9 +629,12 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#truy-vấn-mặc-định">Truy vấn mặc định</a></li>
-        <li><a href="#tìm-các-tin-nhắn-chứa-văn-bản">Tìm các tin nhắn chứa văn bản</a></li>
-        <li><a href="#đếm-sự-kiện-events-và-xem-kết-quả-dưới-biểu-đồ-thời-gian-time-chart">Đếm sự kiện (events) và xem kết quả dưới biểu đồ thời gian (time chart).</a></li>
+        <li><a href="#chọn-log-group">Chọn log group</a></li>
+        <li><a href="#tạo-hiển-thị-dưới-dạng-bảng">Tạo hiển thị dưới dạng bảng</a></li>
+        <li><a href="#hiển-thị-dưới-dạng-biểu-đồ-hình-tròn">Hiển thị dưới dạng biểu đồ hình tròn</a></li>
+        <li><a href="#hiển-thị-dưới-dạng-biểu-đồ-cột">Hiển thị dưới dạng biểu đồ cột</a></li>
+        <li><a href="#hiển-thị-dưới-dạng-biểu-đồ-thời-gian">Hiển thị dưới dạng biểu đồ thời gian</a></li>
+        <li><a href="#hiển-thị-dưới-dạng-stacked-area">Hiển thị dưới dạng stacked area</a></li>
       </ul>
     </li>
   </ul>
@@ -651,7 +654,7 @@
           
             <h1>
               
-              Bắt đầu với truy vấn
+              Truy vấn - sử dụng trường(fields)
             </h1>
           
 
@@ -659,13 +662,11 @@
 
 
 
-	<p>Chúng ta sẽ bắt đầu với các truy vấn đơn giản:</p>
-<ul>
-<li>Truy vấn mặc định</li>
-<li>Tìm kiếm tin nhắn chứa text (sử dụng <em>filter</em>)</li>
-<li>Đếm sự kiện (sử dụng <em>stats</em>) và xem kết quả dưới biểu đồ thời gian. Ta sẽ chạy truy vấn cho mỗi thể loại, giải thích xem nó làm gì, và xem kết quả ra sao.</li>
-</ul>
-<h3 id="truy-vấn-mặc-định">Truy vấn mặc định</h3>
+	<p>Chúng ta có một số lựa chọn về cách hiển thị kết quả truy vấn log của chúng ta.</p>
+<p>Đôi khi, việc hiển thị đầu ra dưới dạng bảng dữ liệu sẽ hữu ích, còn đôi khi sẽ hữu ích hơn nếu cung cấp hiển thị trực quan dưới dạng biểu đồ thời gian, biểu đồ hình tròn, biểu đồ cột, hoặc biểu đồ khu vực chồng lên.</p>
+<p>Chúng ta sẽ sử dụng một truy vấn đơn giản để đi qua từng lựa chọn hiển thị này và thêm chúng vào một bảng điều khiển để tạo ra bảng điều khiển được hiển thị ở đây.</p>
+<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/001.png"></p>
+<h3 id="chọn-log-group">Chọn log group</h3>
 <ol>
 <li>
 <p>Trên Bảng điều khiển quản lý AWS, trong menu <em>Services</em>, nhấp vào <strong>CloudWatch</strong>.</p>
@@ -677,74 +678,155 @@
 <p>Từ <strong>Select log group(s)</strong>, chọn <em>/ecs/PetListAdoptions</em>.</p>
 </li>
 </ol>
-<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.2/001.png"></p>
-<p>Bạn sẽ thấy một truy vấn mẫu được tự động đặt trong trường truy vấn.</p>
-<p>Truy vấn này sẽ:</p>
-<ul>
-<li>
-<p>Hiển thị dấu thời gian và tin nhắn bằng cách sử dụng lệnh <em>fields</em>,</p>
-</li>
-<li>
-<p>Sắp xếp theo thời gian dấu thời gian theo thứ tự giảm dần (desc), và sau đó</p>
-</li>
-<li>
-<p>Giới hạn hiển thị chỉ với 20 kết quả cuối cùng.</p>
-</li>
-</ul>
-<p>Điều này luôn là một điểm khởi đầu tốt để xem các sự kiện log trông như thế nào trong log group của bạn.</p>
-
-<div class="notices note" ><p><strong>Các trường bắt đầu bằng @</strong><br>
-Các trường bắt đầu bằng &ldquo;@&rdquo; là các trường mà CloudWatch tự động tạo ra.<br>
-Trường @message chứa raw log chưa được phân tích.</p>
-</div>
-
+<h3 id="tạo-hiển-thị-dưới-dạng-bảng">Tạo hiển thị dưới dạng bảng</h3>
 <ol start="4">
-<li>Nhấp vào nút <strong>Run query</strong> và xem kết quả.
-<img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.2/002.png"></li>
+<li>Sử dụng truy vấn sau và chọn <strong>Run query</strong> để xem kết quả.</li>
 </ol>
-<p>Ở đầu bạn có thể thấy một biểu đồ cột hiển thị phân phối các sự kiện log theo thời gian mà chúng khớp với truy vấn của bạn.</p>
-<p>Dưới đây, bạn có thể thấy các sự kiện khớp với truy vấn của bạn. Bạn có thể nhấp vào mũi tên bên trái của mỗi dòng để mở rộng sự kiện. Trong trường hợp này, vì sự kiện là dạng JSON, chúng ta thấy nó hiển thị dưới dạng một danh sách các tên trường, với giá trị tương ứng bên cạnh. Ví dụ, trong sự kiện được mở rộng, tôi thấy tôi có một trường có tên là <em>petcolor</em>, và nó có giá trị là <em>white</em>.</p>
-<h3 id="tìm-các-tin-nhắn-chứa-văn-bản">Tìm các tin nhắn chứa văn bản</h3>
-<p>Chúng ta có thể sử dụng lệnh <em>filter</em> để chỉ định các sự kiện log chúng ta muốn sử dụng.</p>
-<p>Lệnh <em>filter</em> có thể được sử dụng để lấy một trường khớp với mong muốn, sự kiện chứa văn bản được chỉ định, thêm điều kiện cho các trường dạng số (numeric fields), kiểm tra xem một trường có tồn tại không và nhiều hơn nữa.</p>
-
-<div class="notices note" ><p><strong>Về cú pháp truy vấn</strong> <br>
-Đối với thông tin chi tiết hơn, hãy xem tài liệu AWS về <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch Logs Insights query syntax</a>.</p>
-</div>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, petcolor, pettype
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter ispresent(petcolor) <span style="color:#66d9ef">AND</span> ispresent(pettype)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">count</span>() <span style="color:#66d9ef">by</span> pettype
+</span></span></code></pre></div><p>Bạn sẽ thấy một bảng kết quả.</p>
+<p><img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/002.png"></p>
 <ol start="5">
-<li>Xóa truy vấn đã có trong trình soạn truy vấn và sao chép và dán vào truy vấn sau đây:</li>
+<li>Chọn <strong>Add to dashboard</strong></li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#f92672">@</span>message
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>brown<span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">desc</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
-</span></span></code></pre></div><p>Truy vấn này áp dụng một filter trên các tin nhắn và chỉ lấy các bản ghi chứa chuỗi brown trong log (trong trường <em>@message</em>).</p>
-<p>Nó cũng sắp xếp các sự kiện được tìm thấy theo thứ tự thời gian giảm dần và chỉ trả về 20 sự kiện này.</p>
+<p>Nếu bạn có sẵn một bảng điều khiển(dashboard), tiện ích (widget) có thể thêm vào bảng điều khiển hiện có. Ở đây, chúng ta sẽ tạo một bảng điều khiển mới.</p>
 <ol start="6">
-<li>Nhấp vào nút <strong>Run query</strong>.</li>
+<li>
+<p>Chọn <strong>Create new</strong>.</p>
+</li>
+<li>
+<p>Đặt tên cho bảng điều khiển mới là <code>display-options</code> và <strong>Create</strong>.</p>
+</li>
+<li>
+<p>Bạn có thể sửa tiêu đề ở đây (dưới ** Customize widget title**), hoặc sửa nó sau khi đã đặt trên bảng điều khiển. Tôi đã gọi tiện ích này là <code>table display</code>.</p>
+</li>
 </ol>
-<p><img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.2/003.png"></p>
-<h3 id="đếm-sự-kiện-events-và-xem-kết-quả-dưới-biểu-đồ-thời-gian-time-chart">Đếm sự kiện (events) và xem kết quả dưới biểu đồ thời gian (time chart).</h3>
-<p>Chúng ta có thể sử dụng lệnh <em>stats</em> để tổng hợp dữ liệu.</p>
-<p>Lệnh <em>stats</em> có thể được sử dụng để đếm số lượng sự kiện, hoặc tính toán thống kê trên một trường cụ thể, như trung bình, tổng, max, min và nhiều hơn nữa.</p>
+<p><img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/003.png"></p>
+<ol start="9">
+<li>
+<p>Chọn <strong>Add to dashboard</strong>.</p>
+</li>
+<li>
+<p>Thay đổi kích thước tiện ích của bạn theo mong muốn và <strong>Save dashboard</strong>.</p>
+</li>
+</ol>
+<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
+<p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/004.png"></p>
+<h3 id="hiển-thị-dưới-dạng-biểu-đồ-hình-tròn">Hiển thị dưới dạng biểu đồ hình tròn</h3>
+<p>Chúng ta sẽ sử dụng lại truy vấn và thay đổi các tùy chọn hiển thị.</p>
+<ol start="11">
+<li>Từ CloudWatch dashboard của bạn, nhấp vào 3 chấm dọc ở phía trên bên phải của tiện ích biểu đồ thời gian đã tạo trước đó và chọn <strong>Duplicate</strong>. (Bạn có thể sao chép bất kỳ tiện ích nào theo cách này).</li>
+</ol>
+<p><img alt="005" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/005.png"></p>
+<ol start="12">
+<li>
+<p>Trên tiện ích mới của bạn, nhấp vào 3 chấm dọc một lần nữa và chọn <strong>Edit</strong>. Bạn sẽ được chuyển về chế độ xem Insights Log để chỉnh sửa truy vấn của mình.</p>
+</li>
+<li>
+<p>Chọn <strong>Run query</strong>.</p>
+</li>
+</ol>
 
-<div class="notices note" ><p><strong>Về cú pháp truy vấn</strong> <br>
-Đối với thông tin chi tiết hơn, hãy xem tài liệu AWS về <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch Logs Insights query syntax</a>.</p>
+<div class="notices note" ><p>Khi bạn chỉnh sửa một tiện ích, tab <strong>Visualization</strong> sẽ trống rỗng. Bạn phải <strong>Run query</strong> trước để có kết quả để hiển thị.</p>
 </div>
 
-<ol start="7">
-<li>Xóa truy vấn đã có trong trình soạn truy vấn và sao chép và dán vào truy vấn sau đây:</li>
+<p>Truy vấn ở đây có kết quả ở định dạng có thể hiển thị theo nhiều cách.</p>
+<ol start="14">
+<li>
+<p>Chọn tab <strong>Visualization</strong> và chọn <strong>Pie</strong> chart display.</p>
+</li>
+<li>
+<p>Chọn <strong>Save changes</strong>.</p>
+</li>
+<li>
+<p>Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành <code>pie chart display</code>.</p>
+</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#f92672">@</span>message
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">count</span>(<span style="color:#f92672">@</span>message) <span style="color:#66d9ef">as</span> number_of_events <span style="color:#66d9ef">by</span> bin(<span style="color:#ae81ff">5</span>m)
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
-</span></span></code></pre></div><p>Truy vấn này trả về kết quả là số lượng tin nhắn được ghi lại trong các khoảng 5 phút.</p>
-<ol start="8">
-<li>Bạn cũng có thể hiển thị kết quả dưới dạng biểu đồ bằng cách nhấp vào tab <strong>Visualization</strong> trong khu vực kết quả như được hiển thị dưới đây.</li>
+<p><img alt="006" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/006.png"></p>
+<ol start="17">
+<li>Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (<strong>Save dashboard</strong>).</li>
 </ol>
-<p>Chú ý rằng bạn cũng có thể thêm biểu đồ vào CloudWatch Dashboard, xuất ra csv và nhiều hơn nữa.</p>
-<p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.2/004.png"></p>
+<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
+<p><img alt="007" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/007.png"></p>
+<h3 id="hiển-thị-dưới-dạng-biểu-đồ-cột">Hiển thị dưới dạng biểu đồ cột</h3>
+<ol start="18">
+<li>
+<p>Sao chép(duplicate) một trong các tiện ích(widgets) của bạn như trước, sau đó chọn <strong>Edit</strong> và <strong>Run query</strong>.</p>
+</li>
+<li>
+<p>Chọn tab <strong>Visualization</strong> và chọn <strong>Bar</strong> chart display.</p>
+</li>
+<li>
+<p>Chọn <strong>Save changes</strong>.</p>
+</li>
+<li>
+<p>Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành <code>bar chart display</code>.</p>
+</li>
+<li>
+<p>Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (<strong>Save dashboard</strong>).</p>
+</li>
+</ol>
+<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
+<p><img alt="008" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/008.png"></p>
+<h3 id="hiển-thị-dưới-dạng-biểu-đồ-thời-gian">Hiển thị dưới dạng biểu đồ thời gian</h3>
+<p>Biểu đồ thời gian và biểu đồ stacked area yêu cầu dữ liệu đã được tổng hợp theo thời gian.</p>
+<p>Trong CloudWatch, chúng tôi gọi biểu đồ thời gian là một biểu đồ đường.</p>
+<p>Vì sự đơn giản, chúng tôi chỉ sẽ xem xét thêm một loạt dữ liệu nhất định vào các biểu đồ này.</p>
+<ol start="23">
+<li>Sao chép(duplicate) một trong các tiện ích của bạn như trước, sau đó chọn <strong>Edit</strong>.</li>
+</ol>
+<p>24.Chỉnh sửa lệnh stats trong truy vấn của bạn để bao gồm một tổng hợp thời gian như dưới đây và <strong>Run query</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, petcolor, pettype
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter ispresent(petcolor) <span style="color:#66d9ef">AND</span> ispresent(pettype)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">count</span>() <span style="color:#66d9ef">by</span> bin(<span style="color:#ae81ff">5</span>m)
+</span></span></code></pre></div><ol start="25">
+<li>
+<p>Chọn tab <strong>Visualization</strong> và chọn hiển thị <strong>Line</strong> chart display.</p>
+</li>
+<li>
+<p>Chọn <strong>Save changes</strong>.</p>
+</li>
+<li>
+<p>Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành <code>time chart display</code>.</p>
+</li>
+<li>
+<p>Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (<strong>Save dashboard</strong>).</p>
+</li>
+</ol>
+<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
+<p><img alt="009" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/009.png"></p>
+<h3 id="hiển-thị-dưới-dạng-stacked-area">Hiển thị dưới dạng stacked area</h3>
+<ol start="29">
+<li>Sao chép(duplicate) một trong các tiện ích của bạn như trước, sau đó chọn <strong>Edit</strong> và <strong>Run query</strong>.</li>
+</ol>
+
+<div class="notices note" ><p>Nếu bạn nhìn thấy một lỗi chỉ ra rằng dữ liệu không phù hợp cho biểu đồ đường (line chart), bạn sẽ cần chỉnh sửa truy vấn để bao gồm một tổng hợp thời gian như đã làm cho hiển thị biểu đồ thời gian.</p>
+</div>
+
+<ol start="30">
+<li>
+<p>Chọn tab <strong>Visualization</strong> và chọn hiển thị <strong>Stacked area</strong> chart display.</p>
+</li>
+<li>
+<p>Chọn <strong>Save changes</strong>.</p>
+</li>
+<li>
+<p>Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành <code>stacked area display</code>.</p>
+</li>
+<li>
+<p>Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (<strong>Save dashboard</strong>).</p>
+</li>
+</ol>
+<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
+<p><img alt="010" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/010.png"></p>
+
+<div class="notices note" ><p><strong>Biểu đồ thời gian với nhiều loạt dữ liệu</strong> <br>
+<img alt="011" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/011.png">
+Ví dụ trên được tạo ra dưới dạng biểu đồ đường trong phần của workshop về <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/">Truy vấn - sử dụng trường</a>.<br>
+Nếu bạn muốn khám phá cách vẽ đồ thị nhiều loạt dữ liệu trên một biểu đồ thời gian, bạn có thể xem một ví dụ trong phần <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/">Truy vấn - sử dụng trường</a>.</p>
+</div>
+
 
 
 
@@ -937,26 +1019,6 @@ Trường @message chứa raw log chưa được phân tích.</p>
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -984,6 +1046,23 @@ Trường @message chứa raw log chưa được phân tích.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -997,6 +1076,9 @@ Trường @message chứa raw log chưa được phân tích.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1034,10 +1116,10 @@ Trường @message chứa raw log chưa được phân tích.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.1-interface/" title="Navigating the Interface"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.3-displaying_results/" title="Hiển thị kết quả"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.3-displaying_results/" title="Hiển thị kết quả" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="//localhost:1313/vi/4-references/" title="References" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
