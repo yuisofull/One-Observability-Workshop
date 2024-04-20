@@ -6,156 +6,192 @@ chapter : false
 pre : " <b> 3.1.1.4 </b> "
 ---
 
-Chúng ta có một số lựa chọn về cách hiển thị kết quả truy vấn log của chúng ta.
+Như chúng ta đã đề cập, Logs Insights tự động trích xuất các trường từ các sự kiện có định dạng JSON (bạn có thể đọc thêm tại [Fields in JSON logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html)). Tuy nhiên, có khả năng một số log của bạn sẽ không có định dạng JSON, hoặc việc tách các trường sẽ không có tác dụng với bạn. Dù sao bạn cũng sẽ muốn phân chia một trường thành các phần nhỏ hơn.
 
-Đôi khi, việc hiển thị đầu ra dưới dạng bảng dữ liệu sẽ hữu ích, còn đôi khi sẽ hữu ích hơn nếu cung cấp hiển thị trực quan dưới dạng biểu đồ thời gian, biểu đồ hình tròn, biểu đồ cột, hoặc biểu đồ khu vực chồng lên.
+### Tại sao việc phân chia dữ liệu log thành các trường khác nhau hữu ích?
 
-Chúng ta sẽ sử dụng một truy vấn đơn giản để đi qua từng lựa chọn hiển thị này và thêm chúng vào một bảng điều khiển để tạo ra bảng điều khiển được hiển thị ở đây.
+Việc phân chia dữ liệu của chúng ta thành các trường cho phép chúng ta lựa chọn những gì muốn hiển thị, cũng như tổng hợp hoặc áp dụng logic vào dữ liệu/các trường chúng ta quan tâm.
 
-![001](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/001.png)
+Trong ví dụ này, chúng ta sẽ chạy một truy vấn để sử dụng các log từ ứng dụng petsite và tìm kiếm các sự kiện nhận nuôi (adoption events). Chúng ta muốn xem mẫu nhận nuôi của các loại thú cưng khác nhau qua thời gian.
 
-### Chọn log group
+![001](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/001.png)
 
-1. Trên Bảng điều khiển quản lý AWS, trong menu *Services*, nhấp vào **CloudWatch**.
+Chúng ta sẽ xây dựng truy vấn từng bước một:
+
+ - Bước 1: Lọc các sự kiện mà chúng ta quan tâm
+ - Bước 2: Tạo các trường - phân chia dữ liệu thành các trường hữu ích
+ - Bước 3: Phân tách trường mà chúng ta quan tâm một lần nữa
+- Bước 4: Tích hợp dữ liệu và chọn cách hiển thị nó
+
+### Sự kiện(events) sẽ trông như thế nào?
+
+Trước khi chúng ta bắt đầu phân tích cách phân chia dữ liệu, chúng ta cần xem xét định dạng của các sự kiện mà chúng ta quan tâm.
+
+1. Trong Bảng điều khiển quản lý AWS trên menu Dịch vụ, nhấp vào **CloudWatch**.
 
 2. Trong menu điều hướng bên trái dưới **Logs**, nhấp vào **Logs Insights**.
 
-3. Từ **Select log group(s)**, chọn */ecs/PetListAdoptions*.
+3. Từ menu thả xuống **Select log group(s)**, chọn nhóm log `/ecs/PayForAdoption`.
 
-### Tạo hiển thị dưới dạng bảng
+4. Để truy vấn mặc định và **Run query**. Bạn nên thấy các sự kiện tương tự như dưới đây.
 
-4. Sử dụng truy vấn sau và chọn **Run query** để xem kết quả.
-```sql
-fields @timestamp, petcolor, pettype
-| filter ispresent(petcolor) AND ispresent(pettype)
-| stats count() by pettype
-```
-Bạn sẽ thấy một bảng kết quả.
+> POST /api/home/completeadoption?petId=024&petType=bunny HTTP/1.1 11.0.13.138:1876 200
 
-![002](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/002.png)
+![002](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/002.png)
 
-5. Chọn **Add to dashboard**
+Chúng ta có 5 trường, được phân tách bằng dấu cách. Chúng ta quan tâm đến trường thứ 2, vì nó chứa petType.
 
-Nếu bạn có sẵn một bảng điều khiển(dashboard), tiện ích (widget) có thể thêm vào bảng điều khiển hiện có. Ở đây, chúng ta sẽ tạo một bảng điều khiển mới.
+### Bước 1: Lọc các sự kiện quan tâm
 
-6. Chọn **Create new**.
+Chúng ta sẽ bắt đầu bằng cách thu hẹp các sự kiện mà truy vấn sẽ trả về. Dây bước đầu tiên quan trọng trong truy vấn - nó đảm bảo chúng ta chỉ nhìn vào dữ liệu quan trọng trong kết quả.
 
-7. Đặt tên cho bảng điều khiển mới là `display-options` và **Create**.
-
-8. Bạn có thể sửa tiêu đề ở đây (dưới ** Customize widget title**), hoặc sửa nó sau khi đã đặt trên bảng điều khiển. Tôi đã gọi tiện ích này là `table display`.
-
-![003](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/003.png)
-
-9. Chọn **Add to dashboard**.
-
-10. Thay đổi kích thước tiện ích của bạn theo mong muốn và **Save dashboard**.
-
-Bảng điều khiển của bạn sẽ trông giống như thế này. 
-
-![004](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/004.png)
-
-### Hiển thị dưới dạng biểu đồ hình tròn
-
-Chúng ta sẽ sử dụng lại truy vấn và thay đổi các tùy chọn hiển thị.
-
-11. Từ CloudWatch dashboard của bạn, nhấp vào 3 chấm dọc ở phía trên bên phải của tiện ích biểu đồ thời gian đã tạo trước đó và chọn **Duplicate**. (Bạn có thể sao chép bất kỳ tiện ích nào theo cách này).
-
-![005](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/005.png)
-
-12. Trên tiện ích mới của bạn, nhấp vào 3 chấm dọc một lần nữa và chọn **Edit**. Bạn sẽ được chuyển về chế độ xem Insights Log để chỉnh sửa truy vấn của mình.
-
-13. Chọn **Run query**.
-
-{{% notice note %}}
-Khi bạn chỉnh sửa một tiện ích, tab **Visualization** sẽ trống rỗng. Bạn phải **Run query** trước để có kết quả để hiển thị.
-{{% /notice %}}
-
-Truy vấn ở đây có kết quả ở định dạng có thể hiển thị theo nhiều cách.
-
-14. Chọn tab **Visualization** và chọn **Pie** chart display.
-
-15. Chọn **Save changes**.
-
-16. Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành `pie chart display`.
-
-![006](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/006.png)
-
-17. Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (**Save dashboard**).
-
-Bảng điều khiển của bạn sẽ trông giống như thế này. 
-
-![007](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/007.png)
-
-### Hiển thị dưới dạng biểu đồ cột
-
-18. Sao chép(duplicate) một trong các tiện ích(widgets) của bạn như trước, sau đó chọn **Edit** và **Run query**.
-
-19. Chọn tab **Visualization** và chọn **Bar** chart display.
-
-20. Chọn **Save changes**.
-
-21. Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành `bar chart display`.
-
-22. Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (**Save dashboard**).
-
-Bảng điều khiển của bạn sẽ trông giống như thế này.
-
-![008](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/008.png)
-
-### Hiển thị dưới dạng biểu đồ thời gian
-
-Biểu đồ thời gian và biểu đồ stacked area yêu cầu dữ liệu đã được tổng hợp theo thời gian.
-
-Trong CloudWatch, chúng tôi gọi biểu đồ thời gian là một biểu đồ đường.
-
-Vì sự đơn giản, chúng tôi chỉ sẽ xem xét thêm một loạt dữ liệu nhất định vào các biểu đồ này.
-
-23. Sao chép(duplicate) một trong các tiện ích của bạn như trước, sau đó chọn **Edit**.
-
-24.Chỉnh sửa lệnh stats trong truy vấn của bạn để bao gồm một tổng hợp thời gian như dưới đây và **Run query**.
+5. Sửa truy vấn của bạn để phù hợp với những gì được hiển thị dưới đây. Ta sử dụng lệnh filter để giữ lại các sự kiện chứa chuỗi POST.
 
 ```sql
-fields @timestamp, petcolor, pettype
-| filter ispresent(petcolor) AND ispresent(pettype)
-| stats count() by bin(5m)
+filter @message like /POST/ 
+| fields @timestamp, @message
+| sort @timestamp desc
+| limit 20
 ```
 
-25. Chọn tab **Visualization** và chọn hiển thị **Line** chart display.
+Càng cụ thể ở đây, việc xác định chính xác sẽ dễ dàng hơn để biết chúng ta đang sử dụng đÚng dữ liệu. Chúng ta có thể thêm vào bộ lọc để chỉ nhận các sự kiện completeadoption. Ví dụ:
 
-26. Chọn **Save changes**.
+```sql
+filter @message like /POST/ and @message like /completeadoption/
+| fields @timestamp, @message
+| sort @timestamp desc
+| limit 20
+```
 
-27. Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành `time chart display`.
+6. Chạy truy vấn và kiểm tra bạn chỉ nhìn thấy các sự kiện POST, completeadoption.
 
-28. Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (**Save dashboard**).
+### Bước 2: Tạo các trường - phân chia dữ liệu thành các trường hữu ích
+Bây giờ chúng ta đã biết định dạng và chỉ nhìn vào các sự kiện chúng ta quan tâm, chúng ta sẽ phân chia dữ liệu của mình thành các trường bằng cách sử dụng lệnh `parse`.
 
-Bảng điều khiển của bạn sẽ trông giống như thế này. 
+Chúng ta làm điều này bằng cách sử dụng lệnh `parse`. Chúng ta có thể sử dụng lệnh parse với một mẫu đơn giản (được biết đến là biểu thức glob), hoặc sử dụng regex (cú pháp biểu thức chính quy). Đối với ví dụ này, một mẫu đơn giản sẽ đủ.
 
-![009](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/009.png)
+Chúng ta có các trường được phân tách bằng dấu cách, vì vậy chúng ta đặt một * (wildcard) vào, sau đó chỉ định tên chúng ta muốn cho mỗi trường. Chúng ta cũng đã phân tách ra địa chỉ IP và cổng trong trường thứ 4 bằng cách sử dụng dấu : (ip:port).
 
-### Hiển thị dưới dạng stacked area
+Hãy xem lệnh parse dưới đây.
 
-29. Sao chép(duplicate) một trong các tiện ích của bạn như trước, sau đó chọn **Edit** và **Run query**.
+```sql
+filter @message like /POST/ and @message like /completeadoption/
+| parse @message "* * * *:* *" as method, request, protocol, ip, port, status
+| limit 20
+```
 
-{{% notice note %}}
-Nếu bạn nhìn thấy một lỗi chỉ ra rằng dữ liệu không phù hợp cho biểu đồ đường (line chart), bạn sẽ cần chỉnh sửa truy vấn để bao gồm một tổng hợp thời gian như đã làm cho hiển thị biểu đồ thời gian.
+7. Cập nhật truy vấn của bạn để phù hợp với điều được hiển thị dưới đây, và **Run query**. Bây giờ bạn nên thấy các cột cho mỗi trường chúng ta đã chỉ định, và dữ liệu được hiển thị cho mỗi sự kiện.
+
+![003](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/003.png)
+
+{{% notice info %}}
+**Đọc thêm về parse**\
+Bạn có thể xem [cú pháp truy vấn của Log Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html) để biết thêm thông tin về lệnh `parse`, cũng như một số ví dụ về việc sử dụng cả biểu thức glob và regex.
 {{% /notice %}}
 
-30. Chọn tab **Visualization** và chọn hiển thị **Stacked area** chart display.
 
-31. Chọn **Save changes**.
+### Bước 3: Phân tích chi tiết trường sâu hơn
 
-32. Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành `stacked area display`.
+Chúng ta đã tìm gần đến dữ liệu chúng ta muốn rồi, nhưng *petType* vẫn chỉ là một phần của trường *request*. Sẽ tốt hơn nếu chúng ta phân chia nó thành các phần nhỏ hơn và có một trường chỉ dành cho *petType*.
 
-33. Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (**Save dashboard**).
+Chúng ta đã có thể thực hiện điều này trong lệnh `parse` ban đầu của mình, nhưng đôi khi có vài lý do để làm việc này riêng biệt.
 
-Bảng điều khiển của bạn sẽ trông giống như thế này.
+Hãy xem lệnh parse mà chúng ta đã sử dụng ở Bước 2.
 
-![010](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/010.png)
+```sql
+parse @message "* * * *:* *" as method, request, protocol, ip, port, status
+```
 
+Ở đây, chúng ta đã phân tách trường được gọi là *@message* xuống một cấp. Bạn có thể thấy rằng chúng ta đã chỉ định trường *@message* ngay sau lệnh *parse*. Chúng ta có thể chỉ định bất kỳ trường nào ở đây.
 
-{{% notice note %}}
-**Biểu đồ thời gian với nhiều loạt dữ liệu** \
-![011](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/011.png)
-Ví dụ trên được tạo ra dưới dạng biểu đồ đường trong phần của workshop về [Truy vấn - sử dụng trường](3-Native_observe/3.1-Logs/3.1.1-LogInsights/3.1.1.4-Querying_using_fields/).\
-Nếu bạn muốn khám phá cách vẽ đồ thị nhiều loạt dữ liệu trên một biểu đồ thời gian, bạn có thể xem một ví dụ trong phần [Truy vấn - sử dụng trường](3-Native_observe/3.1-Logs/3.1.1-LogInsights/3.1.1.4-Querying_using_fields/).
+Trong ví dụ này, chúng ta muốn phân tích cú pháp trường yêu cầu để trích xuất *petType*. Vì vậy, chúng ta chỉ định trường yêu cầu trực tiếp sau lệnh *parse* và bao gồm glob pattern và tên trường mới phù hợp.
+
+```sql
+parse request "*?petId=*&petType=*" as requestURL, id, type
+```
+
+Chúng ta vẫn đang sử dụng glob pattern, nhưng ở đây chúng ta đã cụ thể hóa hơn để các trường chứa chính xác dữ liệu chúng ta quan tâm. Bạn có thể thấy ba dấu * (wildcards) và 3 tên trường.
+
+8. Cập nhật truy vấn của bạn để phù hợp với truy vấn đầy đủ được hiển thị dưới đây, và **Run query**. Bạn nên thấy các cột mới cho *requestURL*, *id*, và *type*.
+
+```sql
+filter @message like /POST/ and @message like /completeadoption/
+| parse @message "* * * *:* *" as method, request, protocol, ip, port, status
+| parse request "*?petId=*&petType=*" as requestURL, id, type
+| limit 20
+```
+![004](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/004.png)
+
+{{% notice info %}}
+**Chỉ hiển thị một số trường**\
+Nếu bạn cảm thấy kết quả của mình đang trở nên phức tạp, và bạn chỉ muốn xem một số trường, thì bạn có thể sử dụng lệnh `display` để chỉ định tên trường và thứ tự. Tất cả các trường khác sẽ bị ẩn đi:
+```sql
+filter @message like /POST/ and @message like /completeadoption/
+| parse @message "* * * *:* *" as method, request, protocol, ip, port, status
+| parse request "*?petId=*&petType=*" as requestURL, id, type
+| display @timestamp, type
+| limit 20
+```
+
 {{% /notice %}}
+
+### Bước 4: Tổng hợp dữ liệu
+
+Chúng ta đã trích xuất dữ liệu của mình với mục đích xem xét pattern tự nuôi nhận nuôi (adoptions) của các loại vật nuôi(pet) khác nhau theo thời gian. Bây giờ chúng ta có trường loại vật nuôi (pet type), chúng ta đã sẵn sàng để tổng hợp.
+
+Ở đây, chúng ta sử dụng lệnh *stats*. Lệnh *stats* cho phép chúng ta tổng hợp dữ liệu của mình qua các nhóm khác nhau. Chúng ta sẽ xem qua một số ví dụ.
+
+9. Một tổng hợp đơn giản sẽ là đếm có bao nhiêu sự kiện cho mỗi loại vật nuôi, nói cách khác, đếm và nhóm theo loại.
+Sao chép truy vấn dưới đây và **Run query**.
+
+```sql
+filter @message like /POST/ and @message like /completeadoption/
+| parse @message "* * * *:* *" as method, request, protocol, ip, port, status
+| parse request "*?petId=*&petType=*" as requestURL, id, type
+| stats count() by type
+```
+
+10. Chúng ta có thể nhóm theo nhiều trường, bao gồm một trường thời gian. Ví dụ, có bao nhiêu sự kiện cho mỗi loại vật nuôi trong mỗi khoảng thời gian 5 phút?
+Sao chép truy vấn dưới đây và **Run query**.
+```sql
+filter @message like /POST/ and @message like /completeadoption/
+| parse @message "* * * *:* *" as method, request, protocol, ip, port, status
+| parse request "*?petId=*&petType=*" as requestURL, id, type
+| stats count() by type, bin(5m)
+```
+
+![005](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/005.png)
+
+Kết quả cho một bảng dữ liệu được nhóm theo cả loại vật nuôi và các khung thời gian.
+
+11. Để hiển thị biểu đồ thời gian với một đường cho mỗi loại vật nuôi, chúng ta cần sử dụng lệnh stats một cách khác.
+Sao chép truy vấn dưới đây và **Run query**.
+```sql
+filter @message like /POST/ and @message like /completeadoption/
+| parse @message "* * * *:* *" as method, request, protocol, ip, port, status
+| parse request "*?petId=*&petType=*" as requestURL, id, type
+| stats sum(type="puppy") as puppy, sum(type="kitten") as kitten, sum(type="bunny") as bunny by bin(5m)
+```
+![006](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/006.png)
+
+Kết quả có định dạng khác với truy vấn trước đó. Lần này chúng ta có một cột cho mỗi loại vật nuôi. Định dạng này sẽ cho phép chúng ta xem biểu đồ thời gian của dữ liệu trên mỗi loại vật nuôi.
+
+12. Nhấp vào tab **Visualization** để xem biểu đồ thời gian của bạn. Đảm bảo rằng loại đường (**Line**) được chọn.
+
+![007](/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/007.png)
+
+### Chúng ta đã làm gì?
+
+Trước khi chúng ta tiếp tục, hãy xem lại lệnh *stats* trong truy vấn mới của chúng ta.
+
+```sql
+| stats sum(type="puppy") as puppy, sum(type="kitten") as kitten, sum(type="bunny") as bunny by bin(5m)
+```
+
+ - Chúng ta đã sử dụng một lệnh *stats* với hàm *sum*.
+ - Trong hàm *sum*, chúng ta chỉ định cái gì để tổng hợp: tức là tất cả các sự kiện có giá trị loại là "puppy".
+ - Chúng ta đã đặt tên cho kết quả tổng hợp, tức là puppy.
+ - Chúng ta đã làm điều này 3 lần, một lần cho mỗi loại vật nuôi.
+ - Chúng ta đã nhóm tổng hợp trên các khoảng thời gian 5 phút.
+
+Việc sử dụng hàm *sum* thay vì hàm *count* là việc quan trọng. Chúng ta phải sử dụng *sum* thay vì *count* ở đây, vì điều kiện *type="puppy"* sẽ trả về 1 hoặc 0 cho mỗi sự kiện. *Count* sẽ đếm tất cả các số 1 và 0, về cơ bản đếm tất cả các sự kiện. *Sum* sẽ đếm những sự kiện có giá trị là 1 hoặc nơi type="puppy" là true.

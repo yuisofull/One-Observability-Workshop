@@ -12,21 +12,21 @@
     <title>Truy vấn - sử dụng trường(fields) :: One Observability Workshop</title>
 
     
-    <link href="//localhost:1313/css/nucleus.css?1713535890" rel="stylesheet">
-    <link href="//localhost:1313/css/fontawesome-all.min.css?1713535890" rel="stylesheet">
-    <link href="//localhost:1313/css/hybrid.css?1713535890" rel="stylesheet">
-    <link href="//localhost:1313/css/featherlight.min.css?1713535890" rel="stylesheet">
-    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1713535890" rel="stylesheet">
-    <link href="//localhost:1313/css/auto-complete.css?1713535890" rel="stylesheet">
-    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1713535890" rel="stylesheet">
-    <link href="//localhost:1313/css/theme.css?1713535890" rel="stylesheet">
-    <link href="//localhost:1313/css/hugo-theme.css?1713535890" rel="stylesheet">
+    <link href="//localhost:1313/css/nucleus.css?1713604460" rel="stylesheet">
+    <link href="//localhost:1313/css/fontawesome-all.min.css?1713604460" rel="stylesheet">
+    <link href="//localhost:1313/css/hybrid.css?1713604460" rel="stylesheet">
+    <link href="//localhost:1313/css/featherlight.min.css?1713604460" rel="stylesheet">
+    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1713604460" rel="stylesheet">
+    <link href="//localhost:1313/css/auto-complete.css?1713604460" rel="stylesheet">
+    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1713604460" rel="stylesheet">
+    <link href="//localhost:1313/css/theme.css?1713604460" rel="stylesheet">
+    <link href="//localhost:1313/css/hugo-theme.css?1713604460" rel="stylesheet">
     
-    <link href="//localhost:1313/css/theme-workshop.css?1713535890" rel="stylesheet">
+    <link href="//localhost:1313/css/theme-workshop.css?1713604460" rel="stylesheet">
     
     
 
-    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1713535890"></script>
+    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1713604460"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1713535890"></script>
-<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1713535890"></script>
+<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1713604460"></script>
+<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1713604460"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="//localhost:1313/js/search.js?1713535890"></script>
+<script type="text/javascript" src="//localhost:1313/js/search.js?1713604460"></script>
 
     
   </div>
@@ -629,12 +629,13 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#chọn-log-group">Chọn log group</a></li>
-        <li><a href="#tạo-hiển-thị-dưới-dạng-bảng">Tạo hiển thị dưới dạng bảng</a></li>
-        <li><a href="#hiển-thị-dưới-dạng-biểu-đồ-hình-tròn">Hiển thị dưới dạng biểu đồ hình tròn</a></li>
-        <li><a href="#hiển-thị-dưới-dạng-biểu-đồ-cột">Hiển thị dưới dạng biểu đồ cột</a></li>
-        <li><a href="#hiển-thị-dưới-dạng-biểu-đồ-thời-gian">Hiển thị dưới dạng biểu đồ thời gian</a></li>
-        <li><a href="#hiển-thị-dưới-dạng-stacked-area">Hiển thị dưới dạng stacked area</a></li>
+        <li><a href="#tại-sao-việc-phân-chia-dữ-liệu-log-thành-các-trường-khác-nhau-hữu-ích">Tại sao việc phân chia dữ liệu log thành các trường khác nhau hữu ích?</a></li>
+        <li><a href="#sự-kiệnevents-sẽ-trông-như-thế-nào">Sự kiện(events) sẽ trông như thế nào?</a></li>
+        <li><a href="#bước-1-lọc-các-sự-kiện-quan-tâm">Bước 1: Lọc các sự kiện quan tâm</a></li>
+        <li><a href="#bước-2-tạo-các-trường---phân-chia-dữ-liệu-thành-các-trường-hữu-ích">Bước 2: Tạo các trường - phân chia dữ liệu thành các trường hữu ích</a></li>
+        <li><a href="#bước-3-phân-tích-chi-tiết-trường-sâu-hơn">Bước 3: Phân tích chi tiết trường sâu hơn</a></li>
+        <li><a href="#bước-4-tổng-hợp-dữ-liệu">Bước 4: Tổng hợp dữ liệu</a></li>
+        <li><a href="#chúng-ta-đã-làm-gì">Chúng ta đã làm gì?</a></li>
       </ul>
     </li>
   </ul>
@@ -662,171 +663,146 @@
 
 
 
-	<p>Chúng ta có một số lựa chọn về cách hiển thị kết quả truy vấn log của chúng ta.</p>
-<p>Đôi khi, việc hiển thị đầu ra dưới dạng bảng dữ liệu sẽ hữu ích, còn đôi khi sẽ hữu ích hơn nếu cung cấp hiển thị trực quan dưới dạng biểu đồ thời gian, biểu đồ hình tròn, biểu đồ cột, hoặc biểu đồ khu vực chồng lên.</p>
-<p>Chúng ta sẽ sử dụng một truy vấn đơn giản để đi qua từng lựa chọn hiển thị này và thêm chúng vào một bảng điều khiển để tạo ra bảng điều khiển được hiển thị ở đây.</p>
-<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/001.png"></p>
-<h3 id="chọn-log-group">Chọn log group</h3>
+	<p>Như chúng ta đã đề cập, Logs Insights tự động trích xuất các trường từ các sự kiện có định dạng JSON (bạn có thể đọc thêm tại <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData-discoverable-fields.html">Fields in JSON logs</a>). Tuy nhiên, có khả năng một số log của bạn sẽ không có định dạng JSON, hoặc việc tách các trường sẽ không có tác dụng với bạn. Dù sao bạn cũng sẽ muốn phân chia một trường thành các phần nhỏ hơn.</p>
+<h3 id="tại-sao-việc-phân-chia-dữ-liệu-log-thành-các-trường-khác-nhau-hữu-ích">Tại sao việc phân chia dữ liệu log thành các trường khác nhau hữu ích?</h3>
+<p>Việc phân chia dữ liệu của chúng ta thành các trường cho phép chúng ta lựa chọn những gì muốn hiển thị, cũng như tổng hợp hoặc áp dụng logic vào dữ liệu/các trường chúng ta quan tâm.</p>
+<p>Trong ví dụ này, chúng ta sẽ chạy một truy vấn để sử dụng các log từ ứng dụng petsite và tìm kiếm các sự kiện nhận nuôi (adoption events). Chúng ta muốn xem mẫu nhận nuôi của các loại thú cưng khác nhau qua thời gian.</p>
+<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/001.png"></p>
+<p>Chúng ta sẽ xây dựng truy vấn từng bước một:</p>
+<ul>
+<li>Bước 1: Lọc các sự kiện mà chúng ta quan tâm</li>
+<li>Bước 2: Tạo các trường - phân chia dữ liệu thành các trường hữu ích</li>
+<li>Bước 3: Phân tách trường mà chúng ta quan tâm một lần nữa</li>
+<li>Bước 4: Tích hợp dữ liệu và chọn cách hiển thị nó</li>
+</ul>
+<h3 id="sự-kiệnevents-sẽ-trông-như-thế-nào">Sự kiện(events) sẽ trông như thế nào?</h3>
+<p>Trước khi chúng ta bắt đầu phân tích cách phân chia dữ liệu, chúng ta cần xem xét định dạng của các sự kiện mà chúng ta quan tâm.</p>
 <ol>
 <li>
-<p>Trên Bảng điều khiển quản lý AWS, trong menu <em>Services</em>, nhấp vào <strong>CloudWatch</strong>.</p>
+<p>Trong Bảng điều khiển quản lý AWS trên menu Dịch vụ, nhấp vào <strong>CloudWatch</strong>.</p>
 </li>
 <li>
 <p>Trong menu điều hướng bên trái dưới <strong>Logs</strong>, nhấp vào <strong>Logs Insights</strong>.</p>
 </li>
 <li>
-<p>Từ <strong>Select log group(s)</strong>, chọn <em>/ecs/PetListAdoptions</em>.</p>
+<p>Từ menu thả xuống <strong>Select log group(s)</strong>, chọn nhóm log <code>/ecs/PayForAdoption</code>.</p>
+</li>
+<li>
+<p>Để truy vấn mặc định và <strong>Run query</strong>. Bạn nên thấy các sự kiện tương tự như dưới đây.</p>
 </li>
 </ol>
-<h3 id="tạo-hiển-thị-dưới-dạng-bảng">Tạo hiển thị dưới dạng bảng</h3>
-<ol start="4">
-<li>Sử dụng truy vấn sau và chọn <strong>Run query</strong> để xem kết quả.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, petcolor, pettype
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter ispresent(petcolor) <span style="color:#66d9ef">AND</span> ispresent(pettype)
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">count</span>() <span style="color:#66d9ef">by</span> pettype
-</span></span></code></pre></div><p>Bạn sẽ thấy một bảng kết quả.</p>
-<p><img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/002.png"></p>
+<blockquote>
+<p>POST /api/home/completeadoption?petId=024&amp;petType=bunny HTTP/1.1 11.0.13.138:1876 200</p>
+</blockquote>
+<p><img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/002.png"></p>
+<p>Chúng ta có 5 trường, được phân tách bằng dấu cách. Chúng ta quan tâm đến trường thứ 2, vì nó chứa petType.</p>
+<h3 id="bước-1-lọc-các-sự-kiện-quan-tâm">Bước 1: Lọc các sự kiện quan tâm</h3>
+<p>Chúng ta sẽ bắt đầu bằng cách thu hẹp các sự kiện mà truy vấn sẽ trả về. Dây bước đầu tiên quan trọng trong truy vấn - nó đảm bảo chúng ta chỉ nhìn vào dữ liệu quan trọng trong kết quả.</p>
 <ol start="5">
-<li>Chọn <strong>Add to dashboard</strong></li>
+<li>Sửa truy vấn của bạn để phù hợp với những gì được hiển thị dưới đây. Ta sử dụng lệnh filter để giữ lại các sự kiện chứa chuỗi POST.</li>
 </ol>
-<p>Nếu bạn có sẵn một bảng điều khiển(dashboard), tiện ích (widget) có thể thêm vào bảng điều khiển hiện có. Ở đây, chúng ta sẽ tạo một bảng điều khiển mới.</p>
-<ol start="6">
-<li>
-<p>Chọn <strong>Create new</strong>.</p>
-</li>
-<li>
-<p>Đặt tên cho bảng điều khiển mới là <code>display-options</code> và <strong>Create</strong>.</p>
-</li>
-<li>
-<p>Bạn có thể sửa tiêu đề ở đây (dưới ** Customize widget title**), hoặc sửa nó sau khi đã đặt trên bảng điều khiển. Tôi đã gọi tiện ích này là <code>table display</code>.</p>
-</li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#f92672">@</span>message
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">desc</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><p>Càng cụ thể ở đây, việc xác định chính xác sẽ dễ dàng hơn để biết chúng ta đang sử dụng đÚng dữ liệu. Chúng ta có thể thêm vào bộ lọc để chỉ nhận các sự kiện completeadoption. Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#f92672">@</span>message
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">desc</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><ol start="6">
+<li>Chạy truy vấn và kiểm tra bạn chỉ nhìn thấy các sự kiện POST, completeadoption.</li>
 </ol>
-<p><img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/003.png"></p>
+<h3 id="bước-2-tạo-các-trường---phân-chia-dữ-liệu-thành-các-trường-hữu-ích">Bước 2: Tạo các trường - phân chia dữ liệu thành các trường hữu ích</h3>
+<p>Bây giờ chúng ta đã biết định dạng và chỉ nhìn vào các sự kiện chúng ta quan tâm, chúng ta sẽ phân chia dữ liệu của mình thành các trường bằng cách sử dụng lệnh <code>parse</code>.</p>
+<p>Chúng ta làm điều này bằng cách sử dụng lệnh <code>parse</code>. Chúng ta có thể sử dụng lệnh parse với một mẫu đơn giản (được biết đến là biểu thức glob), hoặc sử dụng regex (cú pháp biểu thức chính quy). Đối với ví dụ này, một mẫu đơn giản sẽ đủ.</p>
+<p>Chúng ta có các trường được phân tách bằng dấu cách, vì vậy chúng ta đặt một * (wildcard) vào, sau đó chỉ định tên chúng ta muốn cho mỗi trường. Chúng ta cũng đã phân tách ra địa chỉ IP và cổng trong trường thứ 4 bằng cách sử dụng dấu : (ip:port).</p>
+<p>Hãy xem lệnh parse dưới đây.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#34;* * * *:* *&#34;</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">method</span>, request, protocol, ip, port, status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><ol start="7">
+<li>Cập nhật truy vấn của bạn để phù hợp với điều được hiển thị dưới đây, và <strong>Run query</strong>. Bây giờ bạn nên thấy các cột cho mỗi trường chúng ta đã chỉ định, và dữ liệu được hiển thị cho mỗi sự kiện.</li>
+</ol>
+<p><img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/003.png"></p>
+
+<div class="notices info" ><p><strong>Đọc thêm về parse</strong><br>
+Bạn có thể xem <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">cú pháp truy vấn của Log Insights</a> để biết thêm thông tin về lệnh <code>parse</code>, cũng như một số ví dụ về việc sử dụng cả biểu thức glob và regex.</p>
+</div>
+
+<h3 id="bước-3-phân-tích-chi-tiết-trường-sâu-hơn">Bước 3: Phân tích chi tiết trường sâu hơn</h3>
+<p>Chúng ta đã tìm gần đến dữ liệu chúng ta muốn rồi, nhưng <em>petType</em> vẫn chỉ là một phần của trường <em>request</em>. Sẽ tốt hơn nếu chúng ta phân chia nó thành các phần nhỏ hơn và có một trường chỉ dành cho <em>petType</em>.</p>
+<p>Chúng ta đã có thể thực hiện điều này trong lệnh <code>parse</code> ban đầu của mình, nhưng đôi khi có vài lý do để làm việc này riêng biệt.</p>
+<p>Hãy xem lệnh parse mà chúng ta đã sử dụng ở Bước 2.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#34;* * * *:* *&#34;</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">method</span>, request, protocol, ip, port, status
+</span></span></code></pre></div><p>Ở đây, chúng ta đã phân tách trường được gọi là <em>@message</em> xuống một cấp. Bạn có thể thấy rằng chúng ta đã chỉ định trường <em>@message</em> ngay sau lệnh <em>parse</em>. Chúng ta có thể chỉ định bất kỳ trường nào ở đây.</p>
+<p>Trong ví dụ này, chúng ta muốn phân tích cú pháp trường yêu cầu để trích xuất <em>petType</em>. Vì vậy, chúng ta chỉ định trường yêu cầu trực tiếp sau lệnh <em>parse</em> và bao gồm glob pattern và tên trường mới phù hợp.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>parse request <span style="color:#e6db74">&#34;*?petId=*&amp;petType=*&#34;</span> <span style="color:#66d9ef">as</span> requestURL, id, <span style="color:#66d9ef">type</span>
+</span></span></code></pre></div><p>Chúng ta vẫn đang sử dụng glob pattern, nhưng ở đây chúng ta đã cụ thể hóa hơn để các trường chứa chính xác dữ liệu chúng ta quan tâm. Bạn có thể thấy ba dấu * (wildcards) và 3 tên trường.</p>
+<ol start="8">
+<li>Cập nhật truy vấn của bạn để phù hợp với truy vấn đầy đủ được hiển thị dưới đây, và <strong>Run query</strong>. Bạn nên thấy các cột mới cho <em>requestURL</em>, <em>id</em>, và <em>type</em>.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#34;* * * *:* *&#34;</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">method</span>, request, protocol, ip, port, status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse request <span style="color:#e6db74">&#34;*?petId=*&amp;petType=*&#34;</span> <span style="color:#66d9ef">as</span> requestURL, id, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/004.png"></p>
+
+<div class="notices info" ><p><strong>Chỉ hiển thị một số trường</strong><br>
+Nếu bạn cảm thấy kết quả của mình đang trở nên phức tạp, và bạn chỉ muốn xem một số trường, thì bạn có thể sử dụng lệnh <code>display</code> để chỉ định tên trường và thứ tự. Tất cả các trường khác sẽ bị ẩn đi:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#34;* * * *:* *&#34;</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">method</span>, request, protocol, ip, port, status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse request <span style="color:#e6db74">&#34;*?petId=*&amp;petType=*&#34;</span> <span style="color:#66d9ef">as</span> requestURL, id, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> display <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div></div>
+
+<h3 id="bước-4-tổng-hợp-dữ-liệu">Bước 4: Tổng hợp dữ liệu</h3>
+<p>Chúng ta đã trích xuất dữ liệu của mình với mục đích xem xét pattern tự nuôi nhận nuôi (adoptions) của các loại vật nuôi(pet) khác nhau theo thời gian. Bây giờ chúng ta có trường loại vật nuôi (pet type), chúng ta đã sẵn sàng để tổng hợp.</p>
+<p>Ở đây, chúng ta sử dụng lệnh <em>stats</em>. Lệnh <em>stats</em> cho phép chúng ta tổng hợp dữ liệu của mình qua các nhóm khác nhau. Chúng ta sẽ xem qua một số ví dụ.</p>
 <ol start="9">
-<li>
-<p>Chọn <strong>Add to dashboard</strong>.</p>
-</li>
-<li>
-<p>Thay đổi kích thước tiện ích của bạn theo mong muốn và <strong>Save dashboard</strong>.</p>
-</li>
+<li>Một tổng hợp đơn giản sẽ là đếm có bao nhiêu sự kiện cho mỗi loại vật nuôi, nói cách khác, đếm và nhóm theo loại.
+Sao chép truy vấn dưới đây và <strong>Run query</strong>.</li>
 </ol>
-<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
-<p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/004.png"></p>
-<h3 id="hiển-thị-dưới-dạng-biểu-đồ-hình-tròn">Hiển thị dưới dạng biểu đồ hình tròn</h3>
-<p>Chúng ta sẽ sử dụng lại truy vấn và thay đổi các tùy chọn hiển thị.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#34;* * * *:* *&#34;</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">method</span>, request, protocol, ip, port, status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse request <span style="color:#e6db74">&#34;*?petId=*&amp;petType=*&#34;</span> <span style="color:#66d9ef">as</span> requestURL, id, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">count</span>() <span style="color:#66d9ef">by</span> <span style="color:#66d9ef">type</span>
+</span></span></code></pre></div><ol start="10">
+<li>Chúng ta có thể nhóm theo nhiều trường, bao gồm một trường thời gian. Ví dụ, có bao nhiêu sự kiện cho mỗi loại vật nuôi trong mỗi khoảng thời gian 5 phút?
+Sao chép truy vấn dưới đây và <strong>Run query</strong>.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#34;* * * *:* *&#34;</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">method</span>, request, protocol, ip, port, status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse request <span style="color:#e6db74">&#34;*?petId=*&amp;petType=*&#34;</span> <span style="color:#66d9ef">as</span> requestURL, id, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">count</span>() <span style="color:#66d9ef">by</span> <span style="color:#66d9ef">type</span>, bin(<span style="color:#ae81ff">5</span>m)
+</span></span></code></pre></div><p><img alt="005" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/005.png"></p>
+<p>Kết quả cho một bảng dữ liệu được nhóm theo cả loại vật nuôi và các khung thời gian.</p>
 <ol start="11">
-<li>Từ CloudWatch dashboard của bạn, nhấp vào 3 chấm dọc ở phía trên bên phải của tiện ích biểu đồ thời gian đã tạo trước đó và chọn <strong>Duplicate</strong>. (Bạn có thể sao chép bất kỳ tiện ích nào theo cách này).</li>
+<li>Để hiển thị biểu đồ thời gian với một đường cho mỗi loại vật nuôi, chúng ta cần sử dụng lệnh stats một cách khác.
+Sao chép truy vấn dưới đây và <strong>Run query</strong>.</li>
 </ol>
-<p><img alt="005" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/005.png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#34;* * * *:* *&#34;</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">method</span>, request, protocol, ip, port, status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse request <span style="color:#e6db74">&#34;*?petId=*&amp;petType=*&#34;</span> <span style="color:#66d9ef">as</span> requestURL, id, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">sum</span>(<span style="color:#66d9ef">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;puppy&#34;</span>) <span style="color:#66d9ef">as</span> puppy, <span style="color:#66d9ef">sum</span>(<span style="color:#66d9ef">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;kitten&#34;</span>) <span style="color:#66d9ef">as</span> kitten, <span style="color:#66d9ef">sum</span>(<span style="color:#66d9ef">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bunny&#34;</span>) <span style="color:#66d9ef">as</span> bunny <span style="color:#66d9ef">by</span> bin(<span style="color:#ae81ff">5</span>m)
+</span></span></code></pre></div><p><img alt="006" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/006.png"></p>
+<p>Kết quả có định dạng khác với truy vấn trước đó. Lần này chúng ta có một cột cho mỗi loại vật nuôi. Định dạng này sẽ cho phép chúng ta xem biểu đồ thời gian của dữ liệu trên mỗi loại vật nuôi.</p>
 <ol start="12">
-<li>
-<p>Trên tiện ích mới của bạn, nhấp vào 3 chấm dọc một lần nữa và chọn <strong>Edit</strong>. Bạn sẽ được chuyển về chế độ xem Insights Log để chỉnh sửa truy vấn của mình.</p>
-</li>
-<li>
-<p>Chọn <strong>Run query</strong>.</p>
-</li>
+<li>Nhấp vào tab <strong>Visualization</strong> để xem biểu đồ thời gian của bạn. Đảm bảo rằng loại đường (<strong>Line</strong>) được chọn.</li>
 </ol>
-
-<div class="notices note" ><p>Khi bạn chỉnh sửa một tiện ích, tab <strong>Visualization</strong> sẽ trống rỗng. Bạn phải <strong>Run query</strong> trước để có kết quả để hiển thị.</p>
-</div>
-
-<p>Truy vấn ở đây có kết quả ở định dạng có thể hiển thị theo nhiều cách.</p>
-<ol start="14">
-<li>
-<p>Chọn tab <strong>Visualization</strong> và chọn <strong>Pie</strong> chart display.</p>
-</li>
-<li>
-<p>Chọn <strong>Save changes</strong>.</p>
-</li>
-<li>
-<p>Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành <code>pie chart display</code>.</p>
-</li>
-</ol>
-<p><img alt="006" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/006.png"></p>
-<ol start="17">
-<li>Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (<strong>Save dashboard</strong>).</li>
-</ol>
-<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
-<p><img alt="007" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/007.png"></p>
-<h3 id="hiển-thị-dưới-dạng-biểu-đồ-cột">Hiển thị dưới dạng biểu đồ cột</h3>
-<ol start="18">
-<li>
-<p>Sao chép(duplicate) một trong các tiện ích(widgets) của bạn như trước, sau đó chọn <strong>Edit</strong> và <strong>Run query</strong>.</p>
-</li>
-<li>
-<p>Chọn tab <strong>Visualization</strong> và chọn <strong>Bar</strong> chart display.</p>
-</li>
-<li>
-<p>Chọn <strong>Save changes</strong>.</p>
-</li>
-<li>
-<p>Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành <code>bar chart display</code>.</p>
-</li>
-<li>
-<p>Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (<strong>Save dashboard</strong>).</p>
-</li>
-</ol>
-<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
-<p><img alt="008" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/008.png"></p>
-<h3 id="hiển-thị-dưới-dạng-biểu-đồ-thời-gian">Hiển thị dưới dạng biểu đồ thời gian</h3>
-<p>Biểu đồ thời gian và biểu đồ stacked area yêu cầu dữ liệu đã được tổng hợp theo thời gian.</p>
-<p>Trong CloudWatch, chúng tôi gọi biểu đồ thời gian là một biểu đồ đường.</p>
-<p>Vì sự đơn giản, chúng tôi chỉ sẽ xem xét thêm một loạt dữ liệu nhất định vào các biểu đồ này.</p>
-<ol start="23">
-<li>Sao chép(duplicate) một trong các tiện ích của bạn như trước, sau đó chọn <strong>Edit</strong>.</li>
-</ol>
-<p>24.Chỉnh sửa lệnh stats trong truy vấn của bạn để bao gồm một tổng hợp thời gian như dưới đây và <strong>Run query</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, petcolor, pettype
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter ispresent(petcolor) <span style="color:#66d9ef">AND</span> ispresent(pettype)
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">count</span>() <span style="color:#66d9ef">by</span> bin(<span style="color:#ae81ff">5</span>m)
-</span></span></code></pre></div><ol start="25">
-<li>
-<p>Chọn tab <strong>Visualization</strong> và chọn hiển thị <strong>Line</strong> chart display.</p>
-</li>
-<li>
-<p>Chọn <strong>Save changes</strong>.</p>
-</li>
-<li>
-<p>Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành <code>time chart display</code>.</p>
-</li>
-<li>
-<p>Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (<strong>Save dashboard</strong>).</p>
-</li>
-</ol>
-<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
-<p><img alt="009" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/009.png"></p>
-<h3 id="hiển-thị-dưới-dạng-stacked-area">Hiển thị dưới dạng stacked area</h3>
-<ol start="29">
-<li>Sao chép(duplicate) một trong các tiện ích của bạn như trước, sau đó chọn <strong>Edit</strong> và <strong>Run query</strong>.</li>
-</ol>
-
-<div class="notices note" ><p>Nếu bạn nhìn thấy một lỗi chỉ ra rằng dữ liệu không phù hợp cho biểu đồ đường (line chart), bạn sẽ cần chỉnh sửa truy vấn để bao gồm một tổng hợp thời gian như đã làm cho hiển thị biểu đồ thời gian.</p>
-</div>
-
-<ol start="30">
-<li>
-<p>Chọn tab <strong>Visualization</strong> và chọn hiển thị <strong>Stacked area</strong> chart display.</p>
-</li>
-<li>
-<p>Chọn <strong>Save changes</strong>.</p>
-</li>
-<li>
-<p>Di chuột qua tiêu đề và nhấp vào biểu tượng chỉnh sửa (cây bút). Thay đổi tiêu đề thành <code>stacked area display</code>.</p>
-</li>
-<li>
-<p>Thay đổi kích thước, vị trí và đổi tên tiện ích của bạn theo mong muốn. Nhớ lưu lại bảng điều khiển (<strong>Save dashboard</strong>).</p>
-</li>
-</ol>
-<p>Bảng điều khiển của bạn sẽ trông giống như thế này.</p>
-<p><img alt="010" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/010.png"></p>
-
-<div class="notices note" ><p><strong>Biểu đồ thời gian với nhiều loạt dữ liệu</strong> <br>
-<img alt="011" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.3/011.png">
-Ví dụ trên được tạo ra dưới dạng biểu đồ đường trong phần của workshop về <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/">Truy vấn - sử dụng trường</a>.<br>
-Nếu bạn muốn khám phá cách vẽ đồ thị nhiều loạt dữ liệu trên một biểu đồ thời gian, bạn có thể xem một ví dụ trong phần <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/">Truy vấn - sử dụng trường</a>.</p>
-</div>
-
+<p><img alt="007" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.4/007.png"></p>
+<h3 id="chúng-ta-đã-làm-gì">Chúng ta đã làm gì?</h3>
+<p>Trước khi chúng ta tiếp tục, hãy xem lại lệnh <em>stats</em> trong truy vấn mới của chúng ta.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#f92672">|</span> stats <span style="color:#66d9ef">sum</span>(<span style="color:#66d9ef">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;puppy&#34;</span>) <span style="color:#66d9ef">as</span> puppy, <span style="color:#66d9ef">sum</span>(<span style="color:#66d9ef">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;kitten&#34;</span>) <span style="color:#66d9ef">as</span> kitten, <span style="color:#66d9ef">sum</span>(<span style="color:#66d9ef">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bunny&#34;</span>) <span style="color:#66d9ef">as</span> bunny <span style="color:#66d9ef">by</span> bin(<span style="color:#ae81ff">5</span>m)
+</span></span></code></pre></div><ul>
+<li>Chúng ta đã sử dụng một lệnh <em>stats</em> với hàm <em>sum</em>.</li>
+<li>Trong hàm <em>sum</em>, chúng ta chỉ định cái gì để tổng hợp: tức là tất cả các sự kiện có giá trị loại là &ldquo;puppy&rdquo;.</li>
+<li>Chúng ta đã đặt tên cho kết quả tổng hợp, tức là puppy.</li>
+<li>Chúng ta đã làm điều này 3 lần, một lần cho mỗi loại vật nuôi.</li>
+<li>Chúng ta đã nhóm tổng hợp trên các khoảng thời gian 5 phút.</li>
+</ul>
+<p>Việc sử dụng hàm <em>sum</em> thay vì hàm <em>count</em> là việc quan trọng. Chúng ta phải sử dụng <em>sum</em> thay vì <em>count</em> ở đây, vì điều kiện <em>type=&ldquo;puppy&rdquo;</em> sẽ trả về 1 hoặc 0 cho mỗi sự kiện. <em>Count</em> sẽ đếm tất cả các số 1 và 0, về cơ bản đếm tất cả các sự kiện. <em>Sum</em> sẽ đếm những sự kiện có giá trị là 1 hoặc nơi type=&ldquo;puppy&rdquo; là true.</p>
 
 
 
@@ -1129,19 +1105,19 @@ Nếu bạn muốn khám phá cách vẽ đồ thị nhiều loạt dữ liệu 
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="//localhost:1313/js/clipboard.min.js?1713535890"></script>
-    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1713535890"></script>
-    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1713535890"></script>
-    <script src="//localhost:1313/js/jquery.sticky.js?1713535890"></script>
-    <script src="//localhost:1313/js/featherlight.min.js?1713535890"></script>
-    <script src="//localhost:1313/js/highlight.pack.js?1713535890"></script>
+    <script src="//localhost:1313/js/clipboard.min.js?1713604460"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1713604460"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1713604460"></script>
+    <script src="//localhost:1313/js/jquery.sticky.js?1713604460"></script>
+    <script src="//localhost:1313/js/featherlight.min.js?1713604460"></script>
+    <script src="//localhost:1313/js/highlight.pack.js?1713604460"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1713535890"></script>
-    <script src="//localhost:1313/js/learn.js?1713535890"></script>
-    <script src="//localhost:1313/js/hugo-learn.js?1713535890"></script>
+    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1713604460"></script>
+    <script src="//localhost:1313/js/learn.js?1713604460"></script>
+    <script src="//localhost:1313/js/hugo-learn.js?1713604460"></script>
 
-    <link href="//localhost:1313/mermaid/mermaid.css?1713535890" rel="stylesheet" />
-    <script src="//localhost:1313/mermaid/mermaid.js?1713535890"></script>
+    <link href="//localhost:1313/mermaid/mermaid.css?1713604460" rel="stylesheet" />
+    <script src="//localhost:1313/mermaid/mermaid.js?1713604460"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
