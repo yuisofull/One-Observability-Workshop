@@ -18,7 +18,7 @@ Bạn có thể lưu trữ các truy vấn bạn đã tạo. Điều này có th
 
 {{% notice note %}}
 **Chúng ta sẽ sử dụng dữ liệu nào?**
-
+\
 Chúng ta sẽ sử dụng log được tạo ra bởi ứng dụng PetSite trong module này. Bạn có thể sử dụng log của riêng bạn, nhưng định dạng và logic truy vấn sẽ khác nhau.
 {{% /notice %}}
 

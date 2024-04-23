@@ -9,24 +9,24 @@
 
     <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
 
-    <title>AWS native Observability :: One Observability Workshop</title>
+    <title>Truy vấn sử dụng ngôn ngữ tự nhiên :: One Observability Workshop</title>
 
     
-    <link href="//localhost:1313/css/nucleus.css?1713885352" rel="stylesheet">
-    <link href="//localhost:1313/css/fontawesome-all.min.css?1713885352" rel="stylesheet">
-    <link href="//localhost:1313/css/hybrid.css?1713885352" rel="stylesheet">
-    <link href="//localhost:1313/css/featherlight.min.css?1713885352" rel="stylesheet">
-    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1713885352" rel="stylesheet">
-    <link href="//localhost:1313/css/auto-complete.css?1713885352" rel="stylesheet">
-    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1713885352" rel="stylesheet">
-    <link href="//localhost:1313/css/theme.css?1713885352" rel="stylesheet">
-    <link href="//localhost:1313/css/hugo-theme.css?1713885352" rel="stylesheet">
+    <link href="//localhost:1313/css/nucleus.css?1713885461" rel="stylesheet">
+    <link href="//localhost:1313/css/fontawesome-all.min.css?1713885461" rel="stylesheet">
+    <link href="//localhost:1313/css/hybrid.css?1713885461" rel="stylesheet">
+    <link href="//localhost:1313/css/featherlight.min.css?1713885461" rel="stylesheet">
+    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1713885461" rel="stylesheet">
+    <link href="//localhost:1313/css/auto-complete.css?1713885461" rel="stylesheet">
+    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1713885461" rel="stylesheet">
+    <link href="//localhost:1313/css/theme.css?1713885461" rel="stylesheet">
+    <link href="//localhost:1313/css/hugo-theme.css?1713885461" rel="stylesheet">
     
-    <link href="//localhost:1313/css/theme-workshop.css?1713885352" rel="stylesheet">
+    <link href="//localhost:1313/css/theme-workshop.css?1713885461" rel="stylesheet">
     
     
 
-    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1713885352"></script>
+    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1713885461"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="//localhost:1313/vi/3-native_observe/">
+  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.9-querying_using_natural_language/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1713885352"></script>
-<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1713885352"></script>
+<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1713885461"></script>
+<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1713885461"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="//localhost:1313/js/search.js?1713885352"></script>
+<script type="text/javascript" src="//localhost:1313/js/search.js?1713885461"></script>
 
     
   </div>
@@ -231,8 +231,8 @@
   
     
     <li data-nav-id="/vi/3-native_observe/" title="AWS native Observability" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/">
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/" title="Logs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -293,7 +293,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" class="dd-item 
-        
+        parent
         
         
         ">
@@ -549,7 +549,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.9-querying_using_natural_language/" title="Truy vấn sử dụng ngôn ngữ tự nhiên" class="dd-item 
         
-        
+        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.9-querying_using_natural_language/">
@@ -736,7 +736,25 @@
             
           
           
-            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > AWS native Observability
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/'>Log Insights</a> > Truy vấn sử dụng ngôn ngữ tự nhiên
+          
+        
+          
+        
+          
+        
           
         
           
@@ -747,7 +765,16 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tạo-truy-vấn">Tạo truy vấn</a></li>
+        <li><a href="#thêm-giải-thích-truy-vấn">Thêm giải thích truy vấn</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -763,7 +790,7 @@
           
             <h1>
               
-              AWS native Observability
+              Truy vấn sử dụng ngôn ngữ tự nhiên
             </h1>
           
 
@@ -771,10 +798,54 @@
 
 
 
-	<p>Quan sát toàn bộ stack tại AWS bao gồm các giải pháp cơ bản của AWS, giám sát hiệu suất ứng dụng (APM) và các giải pháp mã nguồn mở, mang lại cho bạn khả năng hiểu được những gì đang diễn ra trên toàn bộ công nghệ của bạn vào bất kỳ thời điểm nào.
-Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và phân tích dữ liệu telemetry trong mạng lưới, cơ sở hạ tầng và ứng dụng của bạn trên môi trường đám mây, hybrid hoặc on-premises để bạn có thể thu thập thông tin về hành vi, hiệu suất và sức khỏe của hệ thống của bạn. Những thông tin này giúp bạn phát hiện, điều tra và khắc phục vấn đề một cách nhanh chóng; và kết hợp với trí tuệ nhân tạo và học máy, phản ứng, dự đoán và ngăn chặn vấn đề một cách tích cực.</p>
-<p>Phần này của workshop bao gồm các tính năng quan sát cơ bản của AWS dưới Amazon CloudWatch và AWS X-Ray.</p>
-<p>Bạn sẽ có cơ hội tìm hiểu về các tính năng Quan sát của AWS như Amazon CloudWatch Dashboards , CloudWatch Container Insights , CloudWatch ServiceLens , CloudWatch Metrics , CloudWatch Alarms , CloudWatch Logs , AWS X-Ray  và hơn thế nữa.</p>
+	
+<div class="notices note" ><p>Tính năng này đang trong phiên bản xem trước ở US East (N. Virginia) và US West (Oregon) cho CloudWatch Logs và có thể thay đổi.</p>
+</div>
+
+<p>CloudWatch Logs hỗ trợ khả năng truy vấn bằng ngôn ngữ tự nhiên để giúp bạn tạo và cập nhật các truy vấn cho CloudWatch Logs Insights và CloudWatch Metrics Insights.</p>
+<p>Với tính năng này, bạn có thể đặt câu hỏi hoặc mô tả dữ liệu CloudWatch Logs bạn đang tìm kiếm bằng tiếng Anh thông thường. Khả năng ngôn ngữ tự nhiên tạo ra một truy vấn dựa trên prompt mà bạn nhập vào và cung cấp một giải thích từng dòng về cách hoạt động của truy vấn. Bạn cũng có thể cập nhật truy vấn của mình để đi sâu hơn về dữ liệu của bạn.</p>
+<p>Tùy thuộc vào môi trường của bạn, bạn có thể nhập lời nhắc như  &ldquo;What are the top 100 source IP addresses by bytes transferred?&rdquo; (&ldquo;Các địa chỉ IP trong top 100 theo số byte được truyền?&rdquo;) và  &ldquo;Find the 10 slowest Lambda function requests.&rdquo;(&ldquo;Tìm 10 request Lambda function chậm nhất.&rdquo;)</p>
+
+<a  href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Insights-Query-Assist.html" target="_blank"  class="btn btn-default">
+  
+  
+  
+  Đọc thêm về chủ đề này&hellip;
+  
+</a>
+
+<h3 id="tạo-truy-vấn">Tạo truy vấn</h3>
+
+<div class="notices info" ><p><strong>Các yếu tố cần xem xét</strong> <br>
+Các truy vấn được tạo ra bởi trí tuệ nhân tạo sinh ra và phụ thuộc vào các yếu tố bao gồm dữ liệu được chọn và có sẵn trong tài khoản của bạn. Vì những lý do này, kết quả của bạn có thể thay đổi.</p>
+</div>
+
+<p>Hãy bắt đầu với việc tạo một truy vấn đơn giản. Để tạo một truy vấn CloudWatch Logs Insights với tính năng này, hãy chọn một log group bạn muốn truy vấn, trong trường hợp này chúng tôi sẽ chọn <em>/ecs/PetListAdoptions</em> và sau đó nhấp vào <strong>Query generator</strong> ở dưới cùng như được đánh dấu bằng mũi tên đỏ.</p>
+<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.9/001.png"></p>
+<p>Trong trường văn bản mới này, chúng ta có thể viết prompt của mình bằng ngôn ngữ tự nhiên. Hãy bắt đầu với một prompt đơn giản:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">show</span> me the <span style="color:#66d9ef">last</span> <span style="color:#ae81ff">50</span> log entries <span style="color:#66d9ef">in</span> descendent <span style="color:#66d9ef">order</span>
+</span></span></code></pre></div><p>Nhấp vào <strong>Generate new query</strong>. Như bạn có thể thấy, một truy vấn mới đã tự động được tạo thêm lấy 50 log cuối cùng.</p>
+<p><img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.9/002.png"></p>
+<p>Cuối cùng nhấp vào <strong>Run query</strong>. Nhớ rằng <strong>Generate new query</strong> không tự động chạy truy vấn(<strong>Run query</strong>) mới được tạo.</p>
+<p><img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.9/003.png"></p>
+<p>Bây giờ, hãy thêm một số <em>filter</em> như chúng ta đã thấy trong các phần trước. Giả sử rằng chúng ta muốn kiểm tra tất cả các log cho các loài vật có màu nâu. Sao chép văn bản sau đây và nhấp vào <strong>Update query</strong> để giữ cấu trúc truy vấn cơ bản giống như đã tạo và chỉ thêm các phần thay đổi, đó là filter chuỗi màu nâu(brown).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">show</span> me the <span style="color:#66d9ef">last</span> <span style="color:#ae81ff">50</span> log entries containing the string brown
+</span></span></code></pre></div><p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.9/004.png"></p>
+<p>Prompt này thêm vào truy vấn một filter cho trường @message chứa chuỗi nâu(brown).</p>
+<p>Nếu logs của chúng ta được tạo ra dưới dạng JSON, Log Insights sẽ có khả năng phân tích cú pháp mỗi thuộc tính để truy vấn chúng một cách độc lập. Hãy cụ thể hơn, thay vì tìm kiếm một chuỗi trong sự kiện log hoàn chỉnh, hãy tách với thuộc tính <code>petcolor</code> được tìm thấy trong log.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">show</span> me the <span style="color:#66d9ef">last</span> <span style="color:#ae81ff">50</span> log entries <span style="color:#66d9ef">where</span> the petcolor <span style="color:#66d9ef">is</span> brown <span style="color:#66d9ef">in</span> descendent <span style="color:#66d9ef">order</span>
+</span></span></code></pre></div><p><img alt="005" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.9/005.png"></p>
+<p>Nếu bạn không nhận được cùng một đầu ra, hãy thử nói rõ hơn, ví dụ: <code>how me the last 50 log entries where the custom field petcolor is brown in descendent order</code>và thử lại.</p>
+<h3 id="thêm-giải-thích-truy-vấn">Thêm giải thích truy vấn</h3>
+<p>Khi sử dụng trình tạo truy vấn, bạn sẽ có thể nhận được giải thích về truy vấn để giúp bạn học ngôn ngữ bao gồm các tính năng nâng cao hơn. Để kích hoạt tính năng này, hãy nhấp vào <strong>Preferences</strong> ở bên phải và bật cả hai tính năng: <strong>Include your prompt as comment when generating query using query generator</strong> và <strong>Include explanation of the generated query as comments when using query generatorn</strong>.</p>
+<p>Sau khi bật, hãy thử một số lệnh <em>stats</em>. Như chúng ta đã thấy trong các phần trước, chúng ta có thể muốn phân tích bao nhiêu con vật được nhận nuôi(adopted) nhóm theo loại vật nuôi, như <em>puppy</em> hoặc <em>bunny</em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">show</span> me the logs <span style="color:#66d9ef">for</span> the <span style="color:#66d9ef">count</span> <span style="color:#66d9ef">of</span> pet <span style="color:#66d9ef">type</span> fields <span style="color:#66d9ef">if</span> the value <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">not</span> empty
+</span></span></code></pre></div><p><img alt="006" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.9/006.png"></p>
+<p>Ngoài ra, nếu bạn không nhận được truy vấn mong đợi, ví dụ, nếu không có xác nhận không được trống được thêm vào, bạn có thể thử viết lại và cập nhật truy vấn cho đến khi bạn đạt được truy vấn mong đợi của mình.</p>
+<p>Cuối cùng, chúng ta có thể thử các loại logs khác, hãy chuyển sang nhóm nhật ký <em>/ecs/PetSearch</em> chứa các logs cho dịch vụ Java.</p>
+<p>Nếu chúng tôi đang troubleshoot các lỗi cho dịch vụ cụ thể này, chúng ta có thể thử prompt sau:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>give me <span style="color:#66d9ef">all</span> ERROR logs <span style="color:#66d9ef">level</span> <span style="color:#66d9ef">and</span> <span style="color:#66d9ef">show</span> the <span style="color:#66d9ef">exception</span> field
+</span></span></code></pre></div><p><img alt="007" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.9/007.png"></p>
 
 
 
@@ -916,8 +987,6 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -934,6 +1003,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -948,6 +1018,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1077,6 +1150,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -1101,6 +1175,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1138,10 +1215,10 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
 	 
 	 
 		
-			<a class="nav nav-prev" href="//localhost:1313/vi/2-setup/2.3-apparchitecture/" title="Kiến trúc ứng dụng"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.8-querying_using_deup/" title="Truy vấn sử dụng deup"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/" title="Logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="//localhost:1313/vi/4-references/" title="References" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1151,19 +1228,19 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="//localhost:1313/js/clipboard.min.js?1713885352"></script>
-    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1713885352"></script>
-    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1713885352"></script>
-    <script src="//localhost:1313/js/jquery.sticky.js?1713885352"></script>
-    <script src="//localhost:1313/js/featherlight.min.js?1713885352"></script>
-    <script src="//localhost:1313/js/highlight.pack.js?1713885352"></script>
+    <script src="//localhost:1313/js/clipboard.min.js?1713885461"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1713885461"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1713885461"></script>
+    <script src="//localhost:1313/js/jquery.sticky.js?1713885461"></script>
+    <script src="//localhost:1313/js/featherlight.min.js?1713885461"></script>
+    <script src="//localhost:1313/js/highlight.pack.js?1713885461"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1713885352"></script>
-    <script src="//localhost:1313/js/learn.js?1713885352"></script>
-    <script src="//localhost:1313/js/hugo-learn.js?1713885352"></script>
+    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1713885461"></script>
+    <script src="//localhost:1313/js/learn.js?1713885461"></script>
+    <script src="//localhost:1313/js/hugo-learn.js?1713885461"></script>
 
-    <link href="//localhost:1313/mermaid/mermaid.css?1713885352" rel="stylesheet" />
-    <script src="//localhost:1313/mermaid/mermaid.js?1713885352"></script>
+    <link href="//localhost:1313/mermaid/mermaid.css?1713885461" rel="stylesheet" />
+    <script src="//localhost:1313/mermaid/mermaid.js?1713885461"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
