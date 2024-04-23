@@ -9,7 +9,7 @@
 
     <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
 
-    <title>AWS native Observability :: One Observability Workshop</title>
+    <title>Truy vấn sử dụng pattern :: One Observability Workshop</title>
 
     
     <link href="//localhost:1313/css/nucleus.css?1713866192" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="//localhost:1313/vi/3-native_observe/">
+  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.7-querying_using_pattern/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -231,8 +231,8 @@
   
     
     <li data-nav-id="/vi/3-native_observe/" title="AWS native Observability" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/">
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/" title="Logs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -293,7 +293,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" class="dd-item 
-        
+        parent
         
         
         ">
@@ -493,7 +493,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.7-querying_using_pattern/" title="Truy vấn sử dụng pattern" class="dd-item 
         
-        
+        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.7-querying_using_pattern/">
@@ -708,7 +708,25 @@
             
           
           
-            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > AWS native Observability
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/'>Log Insights</a> > Truy vấn sử dụng pattern
+          
+        
+          
+        
+          
+        
           
         
           
@@ -719,7 +737,18 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#sử-dụng-cú-pháp-pattern-hữu-ích-như-nào">Sử dụng cú pháp pattern hữu ích như nào?</a></li>
+        <li><a href="#kết-quả-pattern-trả-về-trông-như-thế-nào">Kết quả pattern trả về trông như thế nào?</a></li>
+        <li><a href="#sử-dụng-pattern-với-filter-parse-và-sort">Sử dụng <strong>pattern</strong> với <strong>filter</strong>, <strong>parse</strong> và <strong>sort</strong></a></li>
+        <li><a href="#sắp-xếp-theo-mức-độ-nghiêm-trọng">Sắp xếp theo Mức độ nghiêm trọng</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -735,7 +764,7 @@
           
             <h1>
               
-              AWS native Observability
+              Truy vấn sử dụng pattern
             </h1>
           
 
@@ -743,10 +772,54 @@
 
 
 
-	<p>Quan sát toàn bộ stack tại AWS bao gồm các giải pháp cơ bản của AWS, giám sát hiệu suất ứng dụng (APM) và các giải pháp mã nguồn mở, mang lại cho bạn khả năng hiểu được những gì đang diễn ra trên toàn bộ công nghệ của bạn vào bất kỳ thời điểm nào.
-Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và phân tích dữ liệu telemetry trong mạng lưới, cơ sở hạ tầng và ứng dụng của bạn trên môi trường đám mây, hybrid hoặc on-premises để bạn có thể thu thập thông tin về hành vi, hiệu suất và sức khỏe của hệ thống của bạn. Những thông tin này giúp bạn phát hiện, điều tra và khắc phục vấn đề một cách nhanh chóng; và kết hợp với trí tuệ nhân tạo và học máy, phản ứng, dự đoán và ngăn chặn vấn đề một cách tích cực.</p>
-<p>Phần này của workshop bao gồm các tính năng quan sát cơ bản của AWS dưới Amazon CloudWatch và AWS X-Ray.</p>
-<p>Bạn sẽ có cơ hội tìm hiểu về các tính năng Quan sát của AWS như Amazon CloudWatch Dashboards , CloudWatch Container Insights , CloudWatch ServiceLens , CloudWatch Metrics , CloudWatch Alarms , CloudWatch Logs , AWS X-Ray  và hơn thế nữa.</p>
+	<p>Trong phần này, chúng ta sẽ khám phá cú pháp <em>pattern</em>. Bạn có thể truy vấn bằng cú pháp <em>pattern</em> để nhóm hoặc tổng hợp log thành các patterns phổ biến.</p>
+<h3 id="sử-dụng-cú-pháp-pattern-hữu-ích-như-nào">Sử dụng cú pháp pattern hữu ích như nào?</h3>
+<p>Tìm kiếm và lọc qua các lượng lớn log có thể khó khăn đặc biệt khi bạn đang trong tình huống cần phải nhanh chóng điều tra lỗi. Truy vấn bằng cú pháp <em>pattern</em> có thể giúp bạn xác định các dòng log có chi phí cao, giám sát các lỗi xảy ra, tìm các pattern tái diễn trong log của bạn và cung cấp số lượng các pattern được sắp xếp theo mức độ nghiêm trọng.</p>
+<h3 id="kết-quả-pattern-trả-về-trông-như-thế-nào">Kết quả pattern trả về trông như thế nào?</h3>
+<p>Hãy bắt đầu bằng một truy vấn <em>pattern</em> đơn giản.</p>
+<ol>
+<li>
+<p>Thay đổi log group thành <em>/ecs/PetSearch</em>. Từ menu drop down <strong>Select log group(s)</strong>, chọn <em>/ecs/PetSearch</em>.</p>
+</li>
+<li>
+<p>Sao chép truy vấn dưới đây và <strong>Run query</strong>.</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>pattern <span style="color:#f92672">@</span>message
+</span></span></code></pre></div><p>Bạn sẽ thấy kết quả, tuy nhiên chúng hiện đang được mặc định sắp xếp theo trường <em>ratio</em>, hiển thị tỷ lệ sự kiện log trong khoảng thời gian được chọn và các nhóm log phù hợp với pattern được xác định. Mục tiêu của chúng ta là sắp xếp các log theo mức độ nghiêm trọng(<strong>severity level</strong>). Hãy kiểm tra một số trường hợp sử dụng trước khi sắp xếp kết quả theo mức độ nghiêm trọng.</p>
+<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.7/001.png"></p>
+<h3 id="sử-dụng-pattern-với-filter-parse-và-sort">Sử dụng <strong>pattern</strong> với <strong>filter</strong>, <strong>parse</strong> và <strong>sort</strong></h3>
+<p>Để điều chỉnh truy vấn, bạn có thể kết hợp <em>pattern</em> với các lệnh <em>filter</em>, <em>parse</em> hoặc <em>sort</em>.</p>
+<p>Đầu tiên sử dụng truy vấn <em>filter</em> độc lập trong cùng log group <em>/ecs/PetSearch</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>Error Code: AccessDenied<span style="color:#f92672">/</span>
+</span></span></code></pre></div><p>Kết quả sẽ hiển thị tất cả các log bị từ chối truy cập trong các dòng riêng lẻ. Tuy nhiên, bạn muốn xem các log trong một định dạng nhóm phù hợp với pattern <em>/Error Code: AccessDenied/</em>.</p>
+<p>Chạy truy vấn dưới đây và kiểm tra kết quả.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>Error Code: AccessDenied<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> pattern <span style="color:#f92672">@</span>message
+</span></span></code></pre></div><p>Bạn sẽ thấy rằng các kết quả đã được tổng hợp lại với nhau chứa <em>/Error Code: AccessDenied/</em> với số lượng.</p>
+<p><img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.7/002.png"></p>
+<p>Bây giờ, hãy chạy lệnh dưới đây với sự kết hợp của <em>filter</em>, <em>parse</em> và <em>sort</em> với <em>pattern</em> để có kết quả cụ thể hơn.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>ERROR<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#39;Error Code: *&#39;</span> <span style="color:#66d9ef">as</span> errcode
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> pattern errcode
+</span></span></code></pre></div><p>Dưới đây là kết quả.</p>
+<p><img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.7/003.png"></p>
+<h3 id="sắp-xếp-theo-mức-độ-nghiêm-trọng">Sắp xếp theo Mức độ nghiêm trọng</h3>
+<p>Bây giờ, sau khi đã khám phá một số truy vấn <em>pattern</em>, hãy chạy truy vấn dưới đây để sắp xếp theo <em>severityLabel</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>pattern <span style="color:#f92672">@</span>message
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span>severityLabel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><p>Điều này sẽ sắp xếp các nhật ký theo mức độ nghiêm trọng (ERROR là ưu tiên cao nhất) và cung cấp cho bạn số lượng của số sự kiện log phù hợp với pattern được xác định.</p>
+<p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.7/004.png"></p>
+
+<a  href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax-Pattern.html" target="_blank"  class="btn btn-default">
+  
+  
+  
+  Đọc thêm về chủ đề này&hellip;
+  
+</a>
+
 
 
 
@@ -888,8 +961,6 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -906,6 +977,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -920,6 +992,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1017,6 +1092,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -1032,6 +1108,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1094,10 +1173,10 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
 	 
 	 
 		
-			<a class="nav nav-prev" href="//localhost:1313/vi/2-setup/2.3-apparchitecture/" title="Kiến trúc ứng dụng"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.6-querying_using_fields_with_aws_cli/" title="Truy vấn thông qua AWS CLI"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/" title="Logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.8-querying_using_deup/" title="Truy vấn sử dụng deup" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

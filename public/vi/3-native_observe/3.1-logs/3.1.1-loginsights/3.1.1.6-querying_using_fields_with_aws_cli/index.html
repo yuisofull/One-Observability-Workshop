@@ -9,7 +9,7 @@
 
     <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
 
-    <title>AWS native Observability :: One Observability Workshop</title>
+    <title>Truy vấn thông qua AWS CLI :: One Observability Workshop</title>
 
     
     <link href="//localhost:1313/css/nucleus.css?1713866192" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="//localhost:1313/vi/3-native_observe/">
+  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.6-querying_using_fields_with_aws_cli/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -231,8 +231,8 @@
   
     
     <li data-nav-id="/vi/3-native_observe/" title="AWS native Observability" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/">
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/" title="Logs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -293,7 +293,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" class="dd-item 
-        
+        parent
         
         
         ">
@@ -465,7 +465,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.6-querying_using_fields_with_aws_cli/" title="Truy vấn thông qua AWS CLI" class="dd-item 
         
-        
+        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.6-querying_using_fields_with_aws_cli/">
@@ -708,7 +708,25 @@
             
           
           
-            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > AWS native Observability
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/'>Log Insights</a> > Truy vấn thông qua AWS CLI
+          
+        
+          
+        
+          
+        
           
         
           
@@ -735,7 +753,7 @@
           
             <h1>
               
-              AWS native Observability
+              Truy vấn thông qua AWS CLI
             </h1>
           
 
@@ -743,10 +761,27 @@
 
 
 
-	<p>Quan sát toàn bộ stack tại AWS bao gồm các giải pháp cơ bản của AWS, giám sát hiệu suất ứng dụng (APM) và các giải pháp mã nguồn mở, mang lại cho bạn khả năng hiểu được những gì đang diễn ra trên toàn bộ công nghệ của bạn vào bất kỳ thời điểm nào.
-Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và phân tích dữ liệu telemetry trong mạng lưới, cơ sở hạ tầng và ứng dụng của bạn trên môi trường đám mây, hybrid hoặc on-premises để bạn có thể thu thập thông tin về hành vi, hiệu suất và sức khỏe của hệ thống của bạn. Những thông tin này giúp bạn phát hiện, điều tra và khắc phục vấn đề một cách nhanh chóng; và kết hợp với trí tuệ nhân tạo và học máy, phản ứng, dự đoán và ngăn chặn vấn đề một cách tích cực.</p>
-<p>Phần này của workshop bao gồm các tính năng quan sát cơ bản của AWS dưới Amazon CloudWatch và AWS X-Ray.</p>
-<p>Bạn sẽ có cơ hội tìm hiểu về các tính năng Quan sát của AWS như Amazon CloudWatch Dashboards , CloudWatch Container Insights , CloudWatch ServiceLens , CloudWatch Metrics , CloudWatch Alarms , CloudWatch Logs , AWS X-Ray  và hơn thế nữa.</p>
+	<p>Bạn cũng có thể truy vấn các log group sử dụng AWS CLI.</p>
+<p>Những lệnh này có thể chạy từ môi trường Cloud9 của bạn.</p>
+
+<div class="notices note" ><p>Hãy xem phần về <a href="//localhost:1313/vi/2-setup/2.1-cloud9/">Cài đặt Cloud9</a> nếu bạn chưa làm.</p>
+</div>
+
+<ol>
+<li>Thực thi truy vấn sau trong terminal:</li>
+</ol>
+<p>Truy vấn dưới đây truy vấn 10 log records đầu tiên từ một log group trong một khoảng thời gian cụ thể.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws logs start-query --log-group-name /ecs/PetListAdoptions --start-time <span style="color:#66d9ef">$(</span>date -d <span style="color:#e6db74">&#34;12 hour ago&#34;</span> <span style="color:#e6db74">&#34;+%s&#34;</span><span style="color:#66d9ef">)</span> --end-time <span style="color:#66d9ef">$(</span>date <span style="color:#e6db74">&#34;+%s&#34;</span><span style="color:#66d9ef">)</span> --query-string <span style="color:#e6db74">&#39;fields @message | limit 10&#39;</span>
+</span></span></code></pre></div>
+<div class="notices note" ><p>Bạn sẽ cần cập nhật các giá trị tham số thời gian bắt đầu và kết thúc đến các giá trị thời gian epoch chính xác. Bạn có thể tính toán các giá trị thời gian epoch từ trang web <a href="https://www.epochconverter.com/">này</a>.</p>
+</div>
+
+<p>Truy vấn trên sẽ trả về một queryId.</p>
+<ol start="2">
+<li>Thay thế <em>&lt;QUERY_ID&gt;</em> bằng ID truy vấn mà bạn đã sao chép từ kết quả và thực thi lệnh dưới đây trong terminal:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws logs get-query-results --query-id &lt;QUERY_ID&gt;
+</span></span></code></pre></div><p>Nếu không có log nào được trả về, hãy kiểm tra các giá trị thời gian epoch và thử lại.</p>
 
 
 
@@ -888,8 +923,6 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -906,6 +939,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -920,6 +954,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1001,6 +1038,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -1016,6 +1054,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1094,10 +1135,10 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
 	 
 	 
 		
-			<a class="nav nav-prev" href="//localhost:1313/vi/2-setup/2.3-apparchitecture/" title="Kiến trúc ứng dụng"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.5-querying_using_fields_with_regex/" title="Truy vấn - sử dụng trường(fields) với regex"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/" title="Logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.7-querying_using_pattern/" title="Truy vấn sử dụng pattern" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

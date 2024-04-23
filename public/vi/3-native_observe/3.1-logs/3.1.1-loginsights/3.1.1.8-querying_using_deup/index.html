@@ -9,7 +9,7 @@
 
     <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
 
-    <title>AWS native Observability :: One Observability Workshop</title>
+    <title>Truy vấn sử dụng deup :: One Observability Workshop</title>
 
     
     <link href="//localhost:1313/css/nucleus.css?1713866192" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="//localhost:1313/vi/3-native_observe/">
+  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.8-querying_using_deup/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -231,8 +231,8 @@
   
     
     <li data-nav-id="/vi/3-native_observe/" title="AWS native Observability" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/">
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/" title="Logs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -293,7 +293,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" class="dd-item 
-        
+        parent
         
         
         ">
@@ -521,7 +521,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.8-querying_using_deup/" title="Truy vấn sử dụng deup" class="dd-item 
         
-        
+        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.8-querying_using_deup/">
@@ -708,7 +708,25 @@
             
           
           
-            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > AWS native Observability
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/'>Log Insights</a> > Truy vấn sử dụng deup
+          
+        
+          
+        
+          
+        
           
         
           
@@ -719,7 +737,16 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#truy-vấn-với-và-không-có-dedup">Truy vấn với và không có dedup</a></li>
+        <li><a href="#sử-dụng-dedup-với-filter">Sử dụng <em>dedup</em> với <em>filter</em></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -735,7 +762,7 @@
           
             <h1>
               
-              AWS native Observability
+              Truy vấn sử dụng deup
             </h1>
           
 
@@ -743,10 +770,68 @@
 
 
 
-	<p>Quan sát toàn bộ stack tại AWS bao gồm các giải pháp cơ bản của AWS, giám sát hiệu suất ứng dụng (APM) và các giải pháp mã nguồn mở, mang lại cho bạn khả năng hiểu được những gì đang diễn ra trên toàn bộ công nghệ của bạn vào bất kỳ thời điểm nào.
-Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và phân tích dữ liệu telemetry trong mạng lưới, cơ sở hạ tầng và ứng dụng của bạn trên môi trường đám mây, hybrid hoặc on-premises để bạn có thể thu thập thông tin về hành vi, hiệu suất và sức khỏe của hệ thống của bạn. Những thông tin này giúp bạn phát hiện, điều tra và khắc phục vấn đề một cách nhanh chóng; và kết hợp với trí tuệ nhân tạo và học máy, phản ứng, dự đoán và ngăn chặn vấn đề một cách tích cực.</p>
-<p>Phần này của workshop bao gồm các tính năng quan sát cơ bản của AWS dưới Amazon CloudWatch và AWS X-Ray.</p>
-<p>Bạn sẽ có cơ hội tìm hiểu về các tính năng Quan sát của AWS như Amazon CloudWatch Dashboards , CloudWatch Container Insights , CloudWatch ServiceLens , CloudWatch Metrics , CloudWatch Alarms , CloudWatch Logs , AWS X-Ray  và hơn thế nữa.</p>
+	<p>Trong phần này, chúng ta sẽ khám phá cú pháp <em>dedup</em>. Cú pháp <em>dedup</em> cho phép bạn loại bỏ các kết quả trùng lặp từ log của bạn dựa trên các giá trị trường cụ thể.</p>
+<h3 id="truy-vấn-với-và-không-có-dedup">Truy vấn với và không có dedup</h3>
+<p>Hãy chạy một truy vấn đơn giản với và không có <em>dedup</em> và kiểm tra kết quả.</p>
+<p>Thay đổi log group thành <em>/ecs/PetSearch</em>. Từ menu drop down <strong>Select log group(s)</strong>, chọn <em>/ecs/PetSearch</em>.</p>
+<p>Chạy truy vấn KHÔNG DÙNG <em>dedup</em> và kiểm tra kết quả.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, message 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">asc</span>
+</span></span></code></pre></div><p>Kiểm tra số lượng kết quả có cùng message mà không sử dụng <em>limit</em>. Mặc định, sẽ hiển thị 1000 hàng chứa cả chi tiết log.</p>
+<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.8/001.png"></p>
+<p>Bây giờ, hãy chạy cùng một truy vấn CÓ <em>dedup</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, message 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">asc</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> dedup message
+</span></span></code></pre></div><p>Bạn sẽ thấy rằng <em>dedup</em> loại bỏ các bản sao và chỉ liệt kê các message một cách độc nhất.</p>
+<p><img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.8/002.png"></p>
+
+<div class="notices info" ><p>Các giá trị trùng lặp sẽ bị loại bỏ dựa trên thứ tự sắp xếp, chỉ giữ lại kết quả đầu tiên trong thứ tự sắp xếp. Vì thế khuyến khích sắp xếp kết quả trước khi sử dụng lệnh <em>dedup</em>.</p>
+</div>
+
+<h3 id="sử-dụng-dedup-với-filter">Sử dụng <em>dedup</em> với <em>filter</em></h3>
+<p>Bây giờ chúng ta đã biết sự khác biệt giữa việc chạy các truy vấn CÓ và KHÔNG có <em>dedup</em>, hãy thử một số ví dụ khác với cú pháp <em>filter</em>.</p>
+<p>Hãy thay đổi log group thành <em>/ecs/PayForAdoption</em> từ menu drop down <strong>Select log group(s)</strong>.</p>
+<p>Trong truy vấn dưới đây, chúng tôi muốn lấy PetType và PetId, tuy nhiên, hãy chạy truy vấn trước mà không có <em>dedup</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#f92672">@</span>message, <span style="color:#f92672">@</span>log
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter PetType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;kitten&#34;</span> <span style="color:#66d9ef">and</span> PetId <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;022&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">desc</span>
+</span></span></code></pre></div><p>Kiểm tra kết quả đã chọn lọc dưới đây cho <em>PetType</em> và <em>PetId</em>. Cũng lưu ý các ID nhật ký dưới trường <em>@log</em>.</p>
+<p><img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.8/003.png"></p>
+<p>Bây giờ hãy thêm lệnh <em>dedup</em> để loại bỏ các kết quả trùng lặp từ trường <em>@log</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#f92672">@</span>message, <span style="color:#f92672">@</span>log
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter PetType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;kitten&#34;</span> <span style="color:#66d9ef">and</span> PetId <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;022&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">desc</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> dedup <span style="color:#f92672">@</span>log
+</span></span></code></pre></div><p>Bây giờ điều đang xảy ra ở đây là khi bạn chỉ định một trường với <em>dedup</em>, chỉ một sự kiện log được trả về cho mỗi giá trị duy nhất của trường đó, với sự kiện mới nhất của nó. Trong trường hợp của chúng tôi ở đây, đó là giá trị duy nhất mới nhất của trường <em>@log</em> với một ID nhật ký duy nhất.</p>
+<p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.8/004.png"></p>
+<p>Nếu bạn chỉ định nhiều trường, sau đó một log event được trả về cho mỗi kết hợp giá trị duy nhất của các trường đó, trong trường hợp của chúng tôi, nó sẽ trả về các kết hợp duy nhất của các giá trị từ cả hai trường <em>@message</em> và <em>@log</em>.</p>
+<p>Chạy truy vấn dưới đây và kiểm tra kết quả.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>fields <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#f92672">@</span>message, <span style="color:#f92672">@</span>log
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> filter PetType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;kitten&#34;</span> <span style="color:#66d9ef">and</span> PetId <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;022&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> sort <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">desc</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> dedup <span style="color:#f92672">@</span>log, <span style="color:#f92672">@</span>message
+</span></span></code></pre></div><p>Mở rộng một sốlog và bạn sẽ thấy rằng mặc dù các giá trị <em>PetType</em> và <em>PetId</em> được chọn lọc, kết quả <em>FullName</em> của khách hàng là duy nhất trong trường <em>@message</em>.</p>
+<p>Để kiểm tra thêm các trường để sử dụng với <em>dedup</em>, nhấp vào <strong>Discovered fields</strong> ở bên phải của bảng điều khiển CloudWatch Log Insights.</p>
+
+<div class="notices info" ><p><strong>dedup cho các lời gọi hàm chậm</strong> <br>
+dedup cũng giúp tìm kiếm các lời gọi hàm chậm và loại bỏ các request trùng lặp có thể phát sinh từ việc request liên tục hoặc client-side code, ví dụ: <code>dedup @requestID</code>.</p>
+</div>
+
+
+<div class="notices info" ><p><strong>dedup cho troubleshoot network</strong> <br>
+dedup rất hữu ích khi bạn muốn kiểm tra các log events từ trường(field) <em>server</em> duy nhất với một mức độ nghiêm trọng(<em>severity</em> type). Khi sử dụng với cú pháp <em>filter</em>, nó cũng giúp gỡ lỗi vấn đề kết nối mạng bằng cách tìm các giá trị duy nhất từ nguồn hay địa chỉ IP ở trong <em>vpc-flow-logs</em>.</p>
+</div>
+
+
+<a  href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax-Dedup.html" target="_blank"  class="btn btn-default">
+  
+  
+  
+  Đọc thêm về chủ đề này&hellip;
+  
+</a>
+
 
 
 
@@ -888,8 +973,6 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -906,6 +989,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -920,6 +1004,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1033,6 +1120,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -1057,6 +1145,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1094,10 +1185,10 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
 	 
 	 
 		
-			<a class="nav nav-prev" href="//localhost:1313/vi/2-setup/2.3-apparchitecture/" title="Kiến trúc ứng dụng"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.7-querying_using_pattern/" title="Truy vấn sử dụng pattern"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/" title="Logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="//localhost:1313/vi/4-references/" title="References" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

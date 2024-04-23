@@ -9,7 +9,7 @@
 
     <link rel="icon" href="//localhost:1313/images/favicon.png" type="image/png">
 
-    <title>AWS native Observability :: One Observability Workshop</title>
+    <title>Truy vấn - sử dụng trường(fields) với regex :: One Observability Workshop</title>
 
     
     <link href="//localhost:1313/css/nucleus.css?1713866192" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="//localhost:1313/vi/3-native_observe/">
+  <body class="" data-url="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.5-querying_using_fields_with_regex/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -231,8 +231,8 @@
   
     
     <li data-nav-id="/vi/3-native_observe/" title="AWS native Observability" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/">
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/" title="Logs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -293,7 +293,7 @@
   
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/" title="Log Insights" class="dd-item 
-        
+        parent
         
         
         ">
@@ -437,7 +437,7 @@
     
     <li data-nav-id="/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.5-querying_using_fields_with_regex/" title="Truy vấn - sử dụng trường(fields) với regex" class="dd-item 
         
-        
+        active
         
         ">
       <a href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.5-querying_using_fields_with_regex/">
@@ -708,7 +708,25 @@
             
           
           
-            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > AWS native Observability
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='//localhost:1313/vi/'>One Observability Workshop</a> > <a href='//localhost:1313/vi/3-native_observe/'>AWS native Observability</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/'>Logs</a> > <a href='//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/'>Log Insights</a> > Truy vấn - sử dụng trường(fields) với regex
+          
+        
+          
+        
+          
+        
           
         
           
@@ -719,7 +737,16 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#sự-kiện-events-trông-như-thế-nào">Sự kiện (events) trông như thế nào?</a></li>
+        <li><a href="#lấy-nhiều-trường">Lấy nhiều trường</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -735,7 +762,7 @@
           
             <h1>
               
-              AWS native Observability
+              Truy vấn - sử dụng trường(fields) với regex
             </h1>
           
 
@@ -743,11 +770,60 @@
 
 
 
-	<p>Quan sát toàn bộ stack tại AWS bao gồm các giải pháp cơ bản của AWS, giám sát hiệu suất ứng dụng (APM) và các giải pháp mã nguồn mở, mang lại cho bạn khả năng hiểu được những gì đang diễn ra trên toàn bộ công nghệ của bạn vào bất kỳ thời điểm nào.
-Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và phân tích dữ liệu telemetry trong mạng lưới, cơ sở hạ tầng và ứng dụng của bạn trên môi trường đám mây, hybrid hoặc on-premises để bạn có thể thu thập thông tin về hành vi, hiệu suất và sức khỏe của hệ thống của bạn. Những thông tin này giúp bạn phát hiện, điều tra và khắc phục vấn đề một cách nhanh chóng; và kết hợp với trí tuệ nhân tạo và học máy, phản ứng, dự đoán và ngăn chặn vấn đề một cách tích cực.</p>
-<p>Phần này của workshop bao gồm các tính năng quan sát cơ bản của AWS dưới Amazon CloudWatch và AWS X-Ray.</p>
-<p>Bạn sẽ có cơ hội tìm hiểu về các tính năng Quan sát của AWS như Amazon CloudWatch Dashboards , CloudWatch Container Insights , CloudWatch ServiceLens , CloudWatch Metrics , CloudWatch Alarms , CloudWatch Logs , AWS X-Ray  và hơn thế nữa.</p>
+	<p>Trong phần trước, chúng ta khám phá cách truy vấn với định dạng glob. Trong phần này, chúng ta sẽ xem cách sử dụng regex (biểu thức chính quy) để phân tách các trường của chúng ta.</p>
+<p>Chúng ta vẫn đang tìm cách tạo một truy vấn cho phép chúng ta xem pattern của adoptions của các loại vật nuôi(pets) khác nhau theo thời gian.</p>
+<p><img alt="001" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.5/001.png"></p>
+<h3 id="sự-kiện-events-trông-như-thế-nào">Sự kiện (events) trông như thế nào?</h3>
+<p>Các sự kiện mà chúng ta quan tâm đang ở trong nhóm log <code>/ecs/PayForAdoption</code>, và trông giống như thế này:</p>
+<p><code>POST /api/home/completeadoption?petId=024&amp;petType=bunny HTTP/1.1 11.0.13.138:1876 200</code></p>
+<p><img alt="002" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.5/002.png"></p>
+<p>Trước đó, sử dụng định dạng glob, chúng ta đã trích xuất các trường bằng cách sử dụng truy vấn sau:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#e6db74">&#34;* * * *:* *&#34;</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">method</span>, request, protocol, ip, port, status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse request <span style="color:#e6db74">&#34;*?petId=*&amp;petType=*&#34;</span> <span style="color:#66d9ef">as</span> requestURL, id, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> display <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><p>Tuy nhiên, chúng ta chỉ cần trường loại vật nuôi (pet type). Chúng ta có thể đã sử dụng regex (biểu thức chính quy) để rõ hơn ở đây.</p>
+<p>Xem xét lệnh parse sau:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>filter <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>POST<span style="color:#f92672">/</span> <span style="color:#66d9ef">and</span> <span style="color:#f92672">@</span>message <span style="color:#66d9ef">like</span> <span style="color:#f92672">/</span>completeadoption<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#f92672">/&amp;</span>petType<span style="color:#f92672">=</span>(<span style="color:#f92672">?&lt;</span><span style="color:#66d9ef">type</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">\</span>w<span style="color:#f92672">+</span>) HTTP<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> display <span style="color:#f92672">@</span><span style="color:#66d9ef">timestamp</span>, <span style="color:#66d9ef">type</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><p>Trước khi chúng ta khám phá lệnh này, hãy chạy nó và xem kết quả trông như thế nào.</p>
+<ol>
+<li>
+<p>Trong Bảng điều khiển Quản lý AWS trên menu Dịch vụ, nhấp vào <strong>CloudWatch</strong>.</p>
+</li>
+<li>
+<p>Trong menu điều hướng bên trái dưới <strong>Logs</strong>, nhấp vào Logs <strong>Insights</strong>.</p>
+</li>
+<li>
+<p>Từ menu thả xuống <strong>Select log group(s)</strong>, chọn nhóm log <code>/ecs/PayForAdoption</code>.</p>
+</li>
+<li>
+<p>Thay thế truy vấn bằng truy vấn trên và <strong>Run query</strong>. Bạn nên thấy các sự kiện tương tự như được hiển thị ở trên.</p>
+</li>
+</ol>
+<p><img alt="003" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.5/003.png"></p>
+<p>Cùng đi qua định dạng regex trong lệnh parse.</p>
+<p><img alt="004" src="//localhost:1313/images/3.native_observe/3.1-logs/3.1.1-log_insight/3.1.1.5/004.png"></p>
+<p>Để chỉ định dữ liệu chúng ta muốn nhận trong trường, chúng ta đã sử dụng <strong>\w+</strong>.</p>
+<p>Trong regex điều này có nghĩa là:</p>
+<ul>
+<li><strong>\w</strong> : Từ (a-z, A-Z, 0-9, _)</li>
+<li><strong>+</strong> : 1 hoặc nhiều ký tự phù hợp. Có nhiều cách khác nhau để diễn chuỗi bạn muốn nhận.</li>
+</ul>
 
+<div class="notices info" ><p><strong>Thông tin thêm về biểu thức chính quy</strong><br>
+Sử dụng regex là một cách mạnh mẽ để chỉ định và có được trường mong muốn. Chúng ta chỉ mới sử dụng một phần nhỏ của cú pháp ở đây.  <br>
+<br>
+Có nhiều tài nguyên hữu ích về cú pháp regex có sẵn trên web, ví dụ như <a href="https://cheatography.com/davechild/cheat-sheets/regular-expressions/">Cheatography cheatsheet</a>. Khám phá và tìm cái phù hợp với yêu cầu của bạn.</p>
+</div>
+
+<h3 id="lấy-nhiều-trường">Lấy nhiều trường</h3>
+<p>Bạn lấy thể bắt nhiều trường trong một biểu thức. Trong ví dụ dưới đây, chúng ta lấy petId và type. Lưu ý ký tự thoát (backslash) trước dấu hỏi trong <em>?petId=</em> (? có một ý nghĩa đặc biệt trong regex).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#f92672">|</span> parse <span style="color:#f92672">@</span>message <span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#f92672">?</span>petId<span style="color:#f92672">=</span>(<span style="color:#f92672">?&lt;</span>petId<span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">\</span>d<span style="color:#f92672">+</span>)<span style="color:#f92672">&amp;</span>petType<span style="color:#f92672">=</span>(<span style="color:#f92672">?&lt;</span><span style="color:#66d9ef">type</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">\</span>w<span style="color:#f92672">+</span>) HTTP<span style="color:#f92672">/</span>
+</span></span></code></pre></div>
 
 
 
@@ -888,8 +964,6 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -906,6 +980,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -920,6 +995,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -985,6 +1063,7 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
                 
                     
+                    
                 
                 
 
@@ -1000,6 +1079,9 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1094,10 +1176,10 @@ Giám sát tại AWS cho phép bạn thu thập, liên kết, tổng hợp và p
 	 
 	 
 		
-			<a class="nav nav-prev" href="//localhost:1313/vi/2-setup/2.3-apparchitecture/" title="Kiến trúc ứng dụng"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/" title="Truy vấn - sử dụng trường(fields)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/" title="Logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.6-querying_using_fields_with_aws_cli/" title="Truy vấn thông qua AWS CLI" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

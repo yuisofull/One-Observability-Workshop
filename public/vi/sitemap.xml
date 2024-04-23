@@ -31,8 +31,16 @@
   </url><url>
     <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.4-querying_using_fields/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.5-querying_using_fields_with_regex/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/5-cleanup/</loc>
     <lastmod>1970-01-01T07:33:41+07:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.6-querying_using_fields_with_aws_cli/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.7-querying_using_pattern/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/3-native_observe/3.1-logs/3.1.1-loginsights/3.1.1.8-querying_using_deup/</loc>
   </url><url>
     <loc>//localhost:1313/vi/categories/</loc>
   </url><url>
